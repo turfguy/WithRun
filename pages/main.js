@@ -4,7 +4,6 @@ import { MailOutlined, AppstoreOutlined, SettingOutlined, SearchOutlined, AudioO
 import 'antd/dist/antd.css';
 import { useState, useCallback } from 'react';
 import PostForm from '../components/postForm';
-
 import ReactMapGL, { NavigationControl, FlyToInterpolator } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
