@@ -57,32 +57,32 @@ export default function  Signup()
     }
   };
     
-    const [id,setId] = useState('');
-    const onChangeId = useCallback((e)=>{
-        setId(e.target.value)
+    const [userId,setUserId] = useState('');
+    const onChangeUserId = useCallback((e)=>{
+        setUserId(e.target.value)
       },[])
-    const [pw,setPw] = useState('');
-    const onChangePw = useCallback((e)=>{
-        setPw(e.target.value)
+    const [password,setPassword] = useState('');
+    const onChangePassword = useCallback((e)=>{
+        setPassword(e.target.value)
       },[])
-    const [pwCheck,setPwCheck] = useState('');
-    const onChangePwCheck = useCallback((e)=>{
-        setPwCheck(e.target.value)
+    const [passwordCheck,setPasswordCheck] = useState('');
+    const onChangePasswordCheck = useCallback((e)=>{
+        setPasswordCheck(e.target.value)
       },[])
     const [email,setEmail] = useState('');
     const onChangeEmail = useCallback((e)=>{
         setEmail(e.target.value)
       },[])
-    const [nick,setNick] = useState('');
-    const onChangeNick = useCallback((e)=>{
-        setNick(e.target.value)
+    const [username,setUsername] = useState('');
+    const onChangeUsername = useCallback((e)=>{
+        setUsername(e.target.value)
     })
     
     const onSubmit = useCallback((e)=>{
-        const info = {'id': id, 'pw': pw, 'email': email, 'nick': nick }
+        const info = {'userId': userId, 'passowrd': password, 'email': email, 'username': username }
         console.log(info)
-        console.log(id,pw,email,nick)
-    },[id,pw])
+        console.log(userId,password,email,username)
+    },[userId,password])
     return(
         <div>
         <Head>
@@ -109,7 +109,7 @@ export default function  Signup()
             },
           ]}
         >
-        <Input value={id} required onChange={onChangeId}/>
+        <Input value={userId} required onChange={onChangeUserId}/>
       </Form.Item>
       <Form.Item
         name="email"
@@ -139,7 +139,7 @@ export default function  Signup()
         ]}
         hasFeedback
       >
-        <Input.Password value={pw} required onChange={onChangePw} />
+        <Input.Password value={password} required onChange={onChangePassword} />
       </Form.Item>
 
       <Form.Item
@@ -162,12 +162,12 @@ export default function  Signup()
           }),
         ]}
       >
-        <Input.Password value={pwCheck} required onChange={onChangePwCheck}/>
+        <Input.Password value={passwordCheck} required onChange={onChangePasswordCheck}/>
       </Form.Item>
 
       <Form.Item
-        name="nickname"
-        label="Nickname"
+        name="username"
+        label="username"
         tooltip="What do you want others to call you?"
         rules={[
           {
@@ -177,7 +177,7 @@ export default function  Signup()
           },
         ]}
       >
-        <Input value = {nick} required onChange={onChangeNick}/>
+        <Input value = {username} required onChange={onChangeUsername}/>
       </Form.Item>
         <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">

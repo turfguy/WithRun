@@ -46,17 +46,7 @@ export default function Main() {
                 
             </div>
             <main className={styles.main2}>
-            <Card title="마감임박 런닝">
-                <Card.Grid style={gridStyle}>내일 아주대학교 운동장 달리실 분</Card.Grid>
-                <Card.Grid hoverable={false} style={gridStyle}>
-                    지금 빠르게 광교 뛰실 분 구합니다!!
-                </Card.Grid>
-                <Card.Grid style={gridStyle}>183/72 관리하고, 훈훈한다는 말 자주들어요^^</Card.Grid>
-                <Card.Grid style={gridStyle}>Content</Card.Grid>
-                <Card.Grid style={gridStyle}>Content</Card.Grid>
-                <Card.Grid style={gridStyle}>Content</Card.Grid>
-                <Card.Grid style={gridStyle}>Content</Card.Grid>
-            </Card>
+                게시판
             </main>
 
         </Content>

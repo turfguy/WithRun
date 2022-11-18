@@ -15,20 +15,27 @@ export default function Home() {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
-  const [id,setId] = useState('');
-  const onChangeId = useCallback((e)=>{
-      setId(e.target.value)
+  const [userId,setUserId] = useState('');
+  const onChangeUserId = useCallback((e)=>{
+      setUserId(e.target.value)
     },[])
-  const [pw,setPw] = useState('');
-  const onChangePw = useCallback((e)=>{
-      setPw(e.target.value)
+  const [password,setPassword] = useState('');
+  const onChangePassword = useCallback((e)=>{
+      setPassword(e.target.value)
     },[])
   const onSubmit = useCallback((e)=>{
-    const info = {'id': id, 'pw': pw}
+    const info = {'userId': userId, 'password': password}
     console.log(info)
-    console.log(id,pw)
+    console.log(userId,password)
+    onChangeLoginCheck();
     
-    },[id,pw])
+    },[userId,password])
+
+  const [loginCheck,setLoginCheck] = useState(false);
+  const onChangeLoginCheck = useCallback(()=>{
+      console.log(loginCheck)
+      loginCheck === false? setLoginCheck(true) : setLoginCheck(false)
+  },[])
   return (
     <div className={styles.container}>
       <Head>
@@ -43,14 +50,15 @@ export default function Home() {
         <h1 className={styles.title}>
           With <a href="./">Run!</a>
         </h1>
+        {loginCheck !== (true) ? 
          <Form style={{marginTop: '20px'}} onFinish={onSubmit}>
             <Space direction="vertical" style={{marginTop: '20px'}}>
-            <Input size="medium" placeholder="ID" prefix={<UserOutlined />} value={id} onChange={onChangeId} />
+            <Input size="medium" placeholder="ID" prefix={<UserOutlined />} value={userId} onChange={onChangeUserId} />
             <Input.Password
               placeholder="password"
               prefix={<LockOutlined />}
               iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-              value={pw} onChange={onChangePw}
+              value={password} onChange={onChangePassword}
               />
               <Button type="primary" htmlType='submit' block>
                   Login
@@ -62,6 +70,20 @@ export default function Home() {
               </Button>
             </Space>
             </Form>
+
+            :
+        
+            <Form style={{marginTop: '20px'}} onFinish={onSubmit} >
+            <Space direction="vertical" style={{marginTop: '20px'}}>
+            
+              <Button type="primary" block>
+              <a href='/main'> Go Run </a>
+                  
+              </Button>
+             
+            </Space>
+            </Form>
+          }
           </main>
 
       </Content>
