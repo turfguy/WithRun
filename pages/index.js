@@ -6,15 +6,10 @@ const { Header, Footer, Sider, Content,  Checkbox,} = Layout;
 import 'antd/dist/antd.css'
 import { EyeInvisibleOutlined, EyeTwoTone,UserOutlined,LockOutlined} from '@ant-design/icons'; 
 import Link from 'next/link';
+import axios from 'axios';
 
 
 export default function Home() {
-  const onFinish = (values) => {
-    console.log('Success:', values);
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
   const [userId,setUserId] = useState('');
   const onChangeUserId = useCallback((e)=>{
       setUserId(e.target.value)
@@ -25,10 +20,13 @@ export default function Home() {
     },[])
   const onSubmit = useCallback((e)=>{
     const info = {'userId': userId, 'password': password}
-    console.log(info)
-    console.log(userId,password)
-    onChangeLoginCheck();
-    
+    axios.post('https://api.withrun.click/auth/signin',{
+          'userId': userId, 'password': password
+      }).then((res)=>{
+        console.log(res)
+      }).catch(function(error) {
+        console.log(error);
+      });
     },[userId,password])
 
   const [loginCheck,setLoginCheck] = useState(false);
