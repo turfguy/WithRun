@@ -18,7 +18,9 @@
     "react-kakao-maps-sdk": "^1.1.5",
     "react-map-gl": "^7.0.19",
     "react-redux": "^8.0.5",
-    "react-router-dom": "^6.4.3"
+    "react-router-dom": "^6.4.3",
+    "styled-component": "^2.8.0",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "eslint": "8.26.0",
