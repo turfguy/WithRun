@@ -1,8 +1,11 @@
-import {Button, Form, Input} from 'antd'
+import {Button, Form, Input,Container} from 'antd'
 import { useCallback, useRef, useState, useEffect} from 'react';
-
+import Script from 'next/script';
+import { Map, MapMarker } from "react-kakao-maps-sdk";
+	
 const PostForm = () =>
 {   
+    
     const [text, setText] = useState('');
     const onChangeText = useCallback((e)=>{
         setText(e.target.value);
@@ -11,14 +14,34 @@ const PostForm = () =>
             console.log(text)
     },[]);
     
+
+
+    
     return(
-        <Form style={{margin: '10px 0 20px'}} encType="multipart/form-data" onFinish={onSubmit}>
-                    
+        <>
+                <Script
+                type="text/javascript"
+                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cde9d5084f1eaf59090943b96589e58f&libraries=services,clusterer&autoload=false"        
+                
+                />
+           
+        <Form style={{margin: '10px 0 20px', marginTop: '20px'}} encType="multipart/form-data" onFinish={onSubmit}>
+              <Map
+                    center={{ lat: 33.5563, lng: 126.79581 }}
+                    style={{ width: "100%", height: "200px" }}
+                    >
+                    <MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
+               
+                    </MapMarker>
+            </Map>
+
             <Input.TextArea value={text} onChange={onChangeText} maxLength={1000} placeholder="모집글을 작성해주세요!"/>
             <div>
                 <Button type="primary" style={{ float: 'right', marginTop: '3px' }} htmlType="submit">작성</Button>    
             </div>
         </Form>
+        </>
+    
     )
 }
 
