@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import {Menu, Input, Space, Row, Col, Card} from 'antd';
-import { MailOutlined, AppstoreOutlined, SettingOutlined, SearchOutlined, CommentOutlined,AudioOutlined, ExperimentTwoTone, ProfileTwoTone, ThunderboltTwoTone,IdcardTwoTone, TwitterCircleFilled, TwitterSquareFilled} from '@ant-design/icons';
+import { MailOutlined, AppstoreOutlined, SettingOutlined, SearchOutlined, AudioOutlined, ExperimentTwoTone, CommentOutlined,ProfileTwoTone, ThunderboltTwoTone,IdcardTwoTone, TwitterCircleFilled, TwitterSquareFilled} from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import { useState, useCallback } from 'react';
-import PostForm from '../components/PostForm';
+import PostForm from '../components/postForm';
 import ReactMapGL, { NavigationControl, FlyToInterpolator } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import PostCard from '../components/PostCard';
 
-export default function Main() {
+export default function comm() {
     
     return (
         <div>
@@ -36,7 +37,7 @@ export default function Main() {
             <Col xs={24} md={2}>
             </Col>
             <Col xs={24} md={18}>
-                <PostForm/>
+                <PostCard></PostCard>
             </Col>
             <Col xs={24} md={4}>
                 <a style={{marginTop: '20px'}}href="https://github.com/turfguy/withRun" target="_blank" rel='noopener norefferer'> Copyright © 2022 withRun  </a>

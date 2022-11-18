@@ -20,20 +20,20 @@ export default function Home() {
     },[])
   const onSubmit = useCallback((e)=>{
     const info = {'userId': userId, 'password': password}
-    axios.post('https://api.withrun.click/auth/signin',{
-          'userId': userId, 'password': password
-      }).then((res)=>{
-        console.log(res)
-      }).catch(function(error) {
-        console.log(error);
-      });
+      window.location='/main';
+   
+    // axios.post('https://api.withrun.click/auth/signin',{
+    //       'userId': userId, 'password': password
+    //   }).then((res)=>{
+    //    window.location = '/main';
+    //     console.log(res)
+    //   }).catch(function(error) {
+    //      alert('아이디 혹은 패스워드가 옳지 않습니다!')
+    //     console.log(error);
+    //   });
     },[userId,password])
 
-  const [loginCheck,setLoginCheck] = useState(false);
-  const onChangeLoginCheck = useCallback(()=>{
-      console.log(loginCheck)
-      loginCheck === false? setLoginCheck(true) : setLoginCheck(false)
-  },[])
+ 
   return (
     <div className={styles.container}>
       <Head>
@@ -48,7 +48,7 @@ export default function Home() {
         <h1 className={styles.title}>
           With <a href="./">Run!</a>
         </h1>
-        {loginCheck !== (true) ? 
+      
          <Form style={{marginTop: '20px'}} onFinish={onSubmit}>
             <Space direction="vertical" style={{marginTop: '20px'}}>
             <Input size="medium" placeholder="ID" prefix={<UserOutlined />} value={userId} onChange={onChangeUserId} />
@@ -69,19 +69,7 @@ export default function Home() {
             </Space>
             </Form>
 
-            :
-        
-            <Form style={{marginTop: '20px'}} onFinish={onSubmit} >
-            <Space direction="vertical" style={{marginTop: '20px'}}>
-            
-              <Button type="primary" block>
-              <a href='/main'> Go Run </a>
-                  
-              </Button>
-             
-            </Space>
-            </Form>
-          }
+          
           </main>
 
       </Content>

@@ -7,6 +7,9 @@ import 'antd/dist/antd.css'
 import { EyeInvisibleOutlined, EyeTwoTone,UserOutlined,LockOutlined} from '@ant-design/icons'; 
 import Link from 'next/link';
 import React, { useState, useCallback } from 'react';
+import axios from 'axios';
+import { redirect } from 'next/dist/server/api-utils';
+
 const { Option } = Select;
 
 
@@ -80,9 +83,26 @@ export default function  Signup()
     
     const onSubmit = useCallback((e)=>{
         const info = {'userId': userId, 'passowrd': password, 'email': email, 'username': username }
+        axios.post('https://api.withrun.click/auth/signup',{
+          'userId': userId, 'password': password , 'email': email, 'username' : username
+      }).then((res)=>{
+        console.log(res)
+        if (window.alert('회원가입이 완료되었습니다'))
+        {
+          window.location = '/';
+        }
+        else{
+          window.location = '/';
+        }
+        
+      }).catch(function(error) {
+        window.alert('ID,Email,닉네임을 다시 확인해주세요!')
+        console.log(error);
+      });
         console.log(info)
         console.log(userId,password,email,username)
-    },[userId,password])
+  
+    },[userId,password,email,username])
     return(
         <div>
         <Head>
