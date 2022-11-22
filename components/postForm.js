@@ -4,7 +4,8 @@ import Script from 'next/script';
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import Head from 'next/head';
 import styled from 'styled-components';
-
+import axios from 'axios';
+import styles from '../styles/Home.module.css'
 
 const PostForm = () =>
 {   
@@ -17,10 +18,30 @@ const PostForm = () =>
         setText(e.target.value)
         console.log(text)
     })
-    const onSubmit = useCallback(()=>{
+    const onSubmit = useCallback((e)=>{
             console.log(text)
             console.log(latitude, longitude)
-    },[]);
+            axios.post('https://api.withrun.click/crewinfo/post',{
+
+                'Authorization' : 
+                'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5IiwiaXNzIjoiV2l0a…RmuH6MfQ9a8oHiV8BF2E63ZUpldbUOG7xrdfPv7_tm6j8c_ig',
+                'crewInfoDTO':
+                {
+                  'content': text,
+                  'latitude': latitude,
+                  'longitude': longitude 
+                }
+    
+            }).then((res)=>{
+             
+               console.log(res.data)
+        
+                console.log(res)
+              }).catch(function(error) {
+              
+              });
+        
+            },[text]);
     
 
     const [state, setState] = useState({
@@ -79,9 +100,17 @@ const PostForm = () =>
                 
                 />   
         </Head>
+        <h4 className={styles.title2} style={{marginTop : '40px'}}>
+                            모집글 
+                            <a style={{textDecoration:'none'}}>작성</a>
+          </h4>     
+          <Card style={{marginTop : 10}} >
+          {/* <h4 className={styles.title2}>
+                            모집글 <a style={{textDecoration:'none'}}>작성</a>
+          </h4> */}
+        <Form style={{margin: '10px 0 20px'}} encType="multipart/form-data" onFinish={onSubmit}>
                 
-          <Card style={{marginTop : '30px'}}>
-        <Form style={{margin: '10px 0 20px', marginTop: '20px'}} encType="multipart/form-data" onFinish={onSubmit}>
+                <Card bordered={false}>
                 <Map 
                 center={state.center}
                 
@@ -96,8 +125,8 @@ const PostForm = () =>
                 </MapMarker>
                 )}
                 </Map>
-
-            <Input.TextArea value={text} onChange={onChangeText} maxLength={1000} 
+              </Card>
+            <Input.TextArea value={text} onChange={onChangeText} maxLength={1000} rows={5}
             placeholder="모집글을 작성해주세요!"
             />
             <div>

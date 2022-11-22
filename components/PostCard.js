@@ -8,10 +8,14 @@ import React from "react";
 import Head from "next/head";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import axios from "axios";
-
+import CommentForm from "./CommentForm";
 
 const PostCard = ({post})=>
 {   
+
+    const [commentId,setCommentId] = useState('최현욱');
+    const [commentCon,setCommentCon] = useState('좋아요');
+    
     const postTest = useCallback((e)=>{
         
         axios.get("https://api.withrun.click/crewinfo",
@@ -20,7 +24,6 @@ const PostCard = ({post})=>
                 {
                     "Authorization":"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5IiwiaXNzIjoiV2l0a…RmuH6MfQ9a8oHiV8BF2E63ZUpldbUOG7xrdfPv7_tm6j8c_ig"
                 }
-            
         }
         
         )
@@ -33,6 +36,7 @@ const PostCard = ({post})=>
     });}
     )
 
+    
     const [state, setState] = useState({
         center: {
           lat: 33.450701,
@@ -64,19 +68,12 @@ const PostCard = ({post})=>
                 
                 />   
         </Head>
-        <div style={{marginBottom : 20, marginTop: 50 }}>
+        <div style={{marginBottom : 20, marginTop: 10 }}>
         <Card>
         <Button onClick={postTest}>
             Test
         </Button>
-        <Map
-            center={{ lat: 33.5563, lng: 126.79581 }}
-            style={{ width: "100%", height: "360px" }}
-            >
-            <MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
-                <div style={{ color: "#000" }}>작성자의 위치</div>
-            </MapMarker>
-            </Map>
+       
             <Card
             actions={[
                 liked? <HeartTwoTone twoToneColor="#eb2f96" key="heart" onClick={onToggleLike} /> : 
@@ -96,26 +93,36 @@ const PostCard = ({post})=>
                 </Popover>
             ]}
             >
-                <Card.Meta
-                    avatar = {<Avatar>최</Avatar>}
-                    title = '제목'
-                    description='내용'
+            
+                <Card.Meta style={{}}
+                    avatar = {<Avatar>글쓴이</Avatar>}
+                    title = '글쓴이'
+                    description = '오늘 뛰실 분은 연락주세요'
+                    
                 />
+                      <Map
+            center={{ lat: 33.5563, lng: 126.79581 }}
+            style={{ width: "100%", height: "400px" ,marginTop: '20px' }}
+            >
+            <MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
+                <div style={{ color: "#000" }}>작성자의 위치</div>
+            </MapMarker>
+            </Map>
             </Card>
             {commentFormOpened && 
             (<div>
                 <CommentForm />
                 
                 <List
-                    header={`2개의 댓글`}
+                    header={`${commentCon.length}개의 댓글`}
                     itemLayout="horizontal"
-                    dataSource
+                    dataSource={commentCon}
                     renderItem= {(item)=>(
                         <li>
                             <Comment
-                                author={item.User.nickname}
-                                avatar={<Avatar>{item.User.nickname[0]}</Avatar>}
-                                content={item.content}
+                                author={commentId}
+                                avatar={<Avatar>{commentId[0]}</Avatar>}
+                                content={commentCon}
                             />
                         </li>
                 )}

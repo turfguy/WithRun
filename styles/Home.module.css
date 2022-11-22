@@ -53,7 +53,16 @@
   line-height: 1.15;
   font-size: 4rem;
 }
-
+.title2 {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 2rem;
+}
+.title3 {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 1rem;
+}
 .title,
 .description {
   text-align: center;

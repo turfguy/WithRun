@@ -7,6 +7,7 @@ import PostForm from '../components/PostForm';
 import ReactMapGL, { NavigationControl, FlyToInterpolator } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import PostCard from '../components/PostCard';
+import styles from '../styles/Home.module.css'
 
 export default function Main() {
     
@@ -14,11 +15,9 @@ export default function Main() {
         <div>
         <Menu mode='horizontal'>
             <Menu.Item  icon={<ThunderboltTwoTone />}>
-            <Link href="/main">
                 
-                        withRun
-            </Link>
-           
+                        With<a style={{textDecoration: 'none'}}>Run</a>
+            
             </Menu.Item>
         <Menu.Item icon={<CommentOutlined />}>
             
@@ -37,8 +36,14 @@ export default function Main() {
             <Col xs={24} md={2}>
             </Col>
             <Col xs={24} md={18}>
+                <h1 className={styles.title}>
+                            With <a style={{textDecoration:'none'}}>Run</a>
+                </h1>
                 <PostForm/>
-                <PostCard style={{marginTop: '120px'}}/>
+                <h4 className={styles.title2} style={{marginTop:10}}>
+                            실시간<a style={{textDecoration:'none'}}>모집글</a>
+                 </h4>
+                <PostCard style={{}}/>
             </Col>
             <Col xs={24} md={4}>
                 <a style={{marginTop: '20px'}}href="https://github.com/turfguy/withRun" target="_blank" rel='noopener norefferer'> Copyright © 2022 withRun  </a>
