@@ -6,6 +6,7 @@ import { useState, useCallback } from 'react';
 import PostForm from '../components/PostForm';
 import ReactMapGL, { NavigationControl, FlyToInterpolator } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import PostCard from '../components/PostCard';
 
 export default function Main() {
     
@@ -37,9 +38,11 @@ export default function Main() {
             </Col>
             <Col xs={24} md={18}>
                 <PostForm/>
+                <PostCard style={{marginTop: '120px'}}/>
             </Col>
             <Col xs={24} md={4}>
                 <a style={{marginTop: '20px'}}href="https://github.com/turfguy/withRun" target="_blank" rel='noopener norefferer'> Copyright © 2022 withRun  </a>
+                
             </Col>
 
         </Row>

@@ -1,9 +1,10 @@
-import {Button, Form, Input,Container} from 'antd'
+import {Button, Form, Input,Container,Card} from 'antd'
 import { useCallback, useRef, useState, useEffect} from 'react';
 import Script from 'next/script';
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import Head from 'next/head';
 import styled from 'styled-components';
+
 
 const PostForm = () =>
 {   
@@ -33,7 +34,6 @@ const PostForm = () =>
     
       useEffect(() => {
         if (navigator.geolocation) {
-          // GeoLocation을 이용해서 접속 위치를 얻어옵니다
           navigator.geolocation.getCurrentPosition(
             (position) => 
             {  
@@ -44,8 +44,8 @@ const PostForm = () =>
                 ...prev,
                 center: {
                   lat: position.coords.latitude, // 위도
-                  lng: position.coords.longitude,
-                   // 경도
+                  lng: position.coords.longitude, //경도
+                   
                 },
                 isLoading: false,
 
@@ -80,31 +80,31 @@ const PostForm = () =>
                 />   
         </Head>
                 
-           
+          <Card style={{marginTop : '30px'}}>
         <Form style={{margin: '10px 0 20px', marginTop: '20px'}} encType="multipart/form-data" onFinish={onSubmit}>
-                <Map // 지도를 표시할 Container
+                <Map 
                 center={state.center}
-                style={{
-                // 지도의 크기
-                width: "100%",
-                height: "450px",
-                }}
-                level={3} // 지도의 확대 레벨
+                
+                style={{ width: "100%", height: "400px" }}
+                level={3} 
             >
                 {!state.isLoading && (
                 <MapMarker position={state.center}>
                     <div style={{ padding: "5px", color: "#000" }}>
-                    {state.errMsg ? state.errMsg : "여기에 계신가요?!"}
+                    {state.errMsg ? state.errMsg : "여기에 계시는군요!"}
                     </div>
                 </MapMarker>
                 )}
                 </Map>
 
-            <Input.TextArea value={text} onChange={onChangeText} maxLength={1000} placeholder="모집글을 작성해주세요!"/>
+            <Input.TextArea value={text} onChange={onChangeText} maxLength={1000} 
+            placeholder="모집글을 작성해주세요!"
+            />
             <div>
-                <Button type="primary" style={{ float: 'right', marginTop: '3px' }} htmlType="submit">작성</Button>    
+                <Button type="primary" style={{ float: 'right', marginTop: '10px' }} htmlType="submit">작성</Button>    
             </div>
         </Form>
+        </Card>
         </>
     
     )

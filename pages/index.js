@@ -20,17 +20,19 @@ export default function Home() {
     },[])
   const onSubmit = useCallback((e)=>{
     const info = {'userId': userId, 'password': password}
-      window.location='/main';
+      // window.location='/main';
    
-    // axios.post('https://api.withrun.click/auth/signin',{
-    //       'userId': userId, 'password': password
-    //   }).then((res)=>{
-    //    window.location = '/main';
-    //     console.log(res)
-    //   }).catch(function(error) {
-    //      alert('아이디 혹은 패스워드가 옳지 않습니다!')
-    //     console.log(error);
-    //   });
+    axios.post('https://api.withrun.click/auth/signin',{
+          'userId': userId, 'password': password
+      }).then((res)=>{
+      //  window.location = '/main';
+       console.log(res.data)
+
+        console.log(res)
+      }).catch(function(error) {
+         alert('아이디 혹은 패스워드가 옳지 않습니다!')
+        console.log(error);
+      });
     },[userId,password])
 
  
