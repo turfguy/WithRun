@@ -1,5 +1,5 @@
 import { EllipsisOutlined,HeartTwoTone, HeartOutlined, MessageOutlined, RetweetOutlined, MessageTwoTone } from "@ant-design/icons";
-import { Avatar, Button, Card, List, Popover,Comment } from "antd";
+import { Avatar, Button, Card, List, Popover,Comment,Skeleton,Divider } from "antd";
 import {ButtonGroup,  } from "antd/lib/button/button-group";
 import { useSelector } from "react-redux";
 import propTypes from 'prop-types';
@@ -9,6 +9,7 @@ import Head from "next/head";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import axios from "axios";
 import CommentForm from "./CommentForm";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const PostCard = ({post})=>
 {   

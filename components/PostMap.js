@@ -7,13 +7,13 @@ import styled from 'styled-components';
 import axios from 'axios';
 import styles from '../styles/Home.module.css'
 
-
-const PostForm = () =>
+const PostMap = () =>
 {   
 
     const[latitude, setLatitude] = useState('');
     const[longitude, setLongitude] = useState('');
     const[text,setText] = useState('');
+    const testMarker = {latitude:'37.2781831' , longitude: '127.0431222'}
     const onChangeText = useCallback((e)=>
     {
         setText(e.target.value)
@@ -92,6 +92,7 @@ const PostForm = () =>
         }
       }, [])
     
+
     return(
         <>
         <Head>
@@ -101,21 +102,40 @@ const PostForm = () =>
                 
                 />   
         </Head>
-        
-        <Form style={{margin: '10px 0 0px'}} bordered={false} encType="multipart/form-data" onFinish={onSubmit}>
+        <h4 className={styles.title2} style={{ }}>
+                            내주변
+                            <a style={{textDecoration:'none'}}>모집글</a>
+          </h4>     
+          <Card  bordered={false} >
+          {/* <h4 className={styles.title2}>
+                            모집글 <a style={{textDecoration:'none'}}>작성</a>
+          </h4> */}
+        <Form style={{margin: '0px 0 0px'}} bordered={false} encType="multipart/form-data" onFinish={onSubmit}>
                 
-            
-               <Input.TextArea value={text} onChange={onChangeText} maxLength={1000} rows={3} cols={1}
-            placeholder="모집글을 작성해주세요!"
-            />
-            <div>
-                <Button type="primary" style={{ float: 'right', marginTop: '10px' }} htmlType="submit">작성</Button>    
-            </div>
+                <Map 
+                center={state.center}
+                
+                style={{ width: "100%", height: "530px" }}
+                level={3} 
+            >
+                {!state.isLoading && (
+                <MapMarker position={state.center}>
+                    <div style={{ padding: "5px", color: "#000" }}>
+                    {state.errMsg ? state.errMsg : "나의 현위치"}
+                    </div>
+                </MapMarker>
+                )}
+                 <MapMarker position={testMarker}>
+                    <div style={{ padding: "5px", color: "#000" }}>
+                   
+                    </div>
+                </MapMarker>
+                </Map>
         </Form>
-       
+        </Card>
         </>
     
     )
 }
 
-export default PostForm;
+export default PostMap;

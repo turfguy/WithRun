@@ -7,17 +7,16 @@ import PostForm from '../components/postForm';
 import ReactMapGL, { NavigationControl, FlyToInterpolator } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import PostCard from '../components/PostCard';
-
+import styles from '../styles/Home.module.css'
 export default function comm() {
     
     return (
         <div>
         <Menu mode='horizontal'>
             <Menu.Item  icon={<ThunderboltTwoTone />}>
-            <Link href="/main">
                 
-                        withRun
-            </Link>
+                        
+                <a className={styles.title3}  style={{textDecoration: 'none'}}>WithRun</a>
            
             </Menu.Item>
         <Menu.Item icon={<CommentOutlined />}>
