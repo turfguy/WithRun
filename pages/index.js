@@ -26,14 +26,13 @@ export default function Home() {
           'userId': userId, 'password': password
       }).then((res)=>{
       
-       console.log(res.data)
        localStorage.clear()
        localStorage.setItem('userId', res.data.userId)
        localStorage.setItem('Authorization', res.data.token)
        window.location = '/main';
       }).catch(function(error) {
          alert('아이디 혹은 패스워드가 옳지 않습니다!')
-        console.log(error);
+        
       });
     },[userId,password])
 

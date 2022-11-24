@@ -8,7 +8,6 @@ import React from "react";
 import Head from "next/head";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import axios from "axios";
-import CommentForm from "./CommentForm";
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const PostCard = ({post})=>

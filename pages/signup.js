@@ -48,7 +48,6 @@ export default function  Signup()
 {
   const [form] = Form.useForm();
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
   };
   
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
@@ -86,7 +85,7 @@ export default function  Signup()
         axios.post('https://api.withrun.click/auth/signup',{
           'userId': userId, 'password': password , 'email': email, 'username' : username
       }).then((res)=>{
-        console.log(res)
+   
         if (window.alert('회원가입이 완료되었습니다'))
         {
           window.location = '/';
@@ -97,11 +96,8 @@ export default function  Signup()
         
       }).catch(function(error) {
         window.alert('ID,Email,닉네임을 다시 확인해주세요!')
-        console.log(error);
+      
       });
-        console.log(info)
-        console.log(userId,password,email,username)
-  
     },[userId,password,email,username])
     return(
         <div>

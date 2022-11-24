@@ -8,7 +8,9 @@ import axios from 'axios';
 import styles from '../styles/Home.module.css'
 
 const PostMap = () =>
-{ const [mainData,setMainData] = useState('');
+{ 
+  const KAKAOMAP_API_KEY = process.env.REACT_APP_KAKAOMAP_API_KEY
+  const [mainData,setMainData] = useState('');
   useEffect((e)=>
   {
     axios.get('https://api.withrun.click/crewinfo')
@@ -73,7 +75,7 @@ const PostMap = () =>
         <Head>
             <script
                 type="text/javascript"
-                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cde9d5084f1eaf59090943b96589e58f&libraries=services,clusterer&autoload=false"        
+                src={KAKAOMAP_API_KEY}        
                 
                 />   
         </Head>

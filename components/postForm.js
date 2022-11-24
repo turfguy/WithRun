@@ -37,10 +37,8 @@ const PostForm = () =>
             
             ).then((res)=>{
              
-               console.log(res.data)
                window.location='/main';
         
-                console.log(res)
               }).catch(function(error) {
               
               });
@@ -64,7 +62,7 @@ const PostForm = () =>
             {  
               setLatitude(position.coords.latitude),
               setLongitude(position.coords.longitude),
-              console.log(latitude,longitude)
+              
               setState((prev) => ({
                 ...prev,
                 center: {
