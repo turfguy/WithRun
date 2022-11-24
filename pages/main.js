@@ -14,10 +14,7 @@ import axios from 'axios';
 
 export default function Main() {
    
-    useEffect((e)=>
-    {
-        console.log('ho')
-    })
+    
 
     return (
         <div>
@@ -48,7 +45,6 @@ export default function Main() {
             
             </Col>
             <Col xs={24} md={17}>
-               
                 <PostMap/>
              
 

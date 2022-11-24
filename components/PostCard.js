@@ -17,26 +17,7 @@ const PostCard = ({post})=>
     const [commentId,setCommentId] = useState('최현욱');
     const [commentCon,setCommentCon] = useState('좋아요');
     
-    const postTest = useCallback((e)=>{
-        
-        axios.get("https://api.withrun.click/crewinfo",
-        {
-            header: 
-                {
-                    "Authorization":"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5IiwiaXNzIjoiV2l0a…RmuH6MfQ9a8oHiV8BF2E63ZUpldbUOG7xrdfPv7_tm6j8c_ig"
-                }
-        }
-        
-        )
-    .then(function (response) {
-         console.log(response)
-    }).catch(function (error) {
-        console.log(error)
-    }).then(function() {
-        // 항상 실행
-    });}
-    )
-
+    
     
     const [state, setState] = useState({
         center: {

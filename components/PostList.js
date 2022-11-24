@@ -10,34 +10,36 @@ import axios from "axios";
 import CommentForm from "./CommentForm";
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-const PostList = ({post})=>
-{   
-      
-    const [loading, setLoading] = useState(false);
-    const [data, setData] = useState([]);
-    const loadMoreData = () => {
-      if (loading) {
-        return;
-      }
-      setLoading(true);
-      fetch('https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo')
-        .then((res) =>
-         res.json()
-        )
-        .then((body) => {
-          setData([...data, ...body.results]);
-          setLoading(false);
-        })
-        .catch(() => {
-          setLoading(false);
-        });
-    };
-    useEffect(() => {
-      loadMoreData();
-    }, []);
+const PostList = ()=>
+{   const [mainData,setMainData] = useState('');
+        
+      const [loading, setLoading] = useState(false);
+      const [data, setData] = useState([]);
+      const loadMoreData = () => {
+        if (loading) {
+          return;
+        }
+        setLoading(true);
+        // fetch('https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo')
+        fetch('https://api.withrun.click/crewinfo')
+         .then((res) =>res.json())
+          .then((body) => {
+            setData([...data, ...body.results]);
+            
+            setLoading(false);
+          })
+          .catch(() => {
+            setLoading(false);
+          });
+      };
+      useEffect(() => {
+        loadMoreData();
+      }, []);
     return(
         
             <>
+                
+              
                     <div
                     id="scrollableDiv"
                     style={{
@@ -64,21 +66,19 @@ const PostList = ({post})=>
                         endMessage={<Divider plain>더 이상 글이 없어요!🤐</Divider>}
                         scrollableTarget="scrollableDiv"
                     >
-                        <List
-                        dataSource={data}
-                        renderItem={(item) => (
-                            <List.Item key= {item.email}>
-                            <List.Item.Meta
-                                avatar={<Avatar>{item.name.last[0]}</Avatar>}
-                                title={item.name.last}
-                                // description={item.email} //글내용
-                                description={'같이 뛸 사람 연락주세요!! 010-3113-0360, 오늘 저녁 8시 광교호수공원'}
+                       <List
+                              dataSource={data}
+                              renderItem={(item) => (
+                                <List.Item key={item.id}>
+                                  <List.Item.Meta
+                                    avatar={<Avatar>{item.author[0]}</Avatar>}
+                                    title={item.author}
+                                    description={item.content}
+                                  />
+                                  <div>Content</div>
+                                </List.Item>
+                              )}
                             />
-                            <div>Content</div> 
-                      {/* 시간 , 날짜 정도? */}
-                            </List.Item>
-                        )}
-                        />
                     </InfiniteScroll>
                 
             </div>

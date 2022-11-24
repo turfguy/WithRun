@@ -29,7 +29,7 @@ export default function Home() {
        console.log(res.data)
        localStorage.clear()
        localStorage.setItem('userId', res.data.userId)
-       localStorage.setItem('token', res.data.token)
+       localStorage.setItem('Authorization', res.data.token)
        window.location = '/main';
       }).catch(function(error) {
          alert('아이디 혹은 패스워드가 옳지 않습니다!')

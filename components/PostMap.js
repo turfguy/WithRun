@@ -1,49 +1,24 @@
-import {Button, Form, Input,Container,Card} from 'antd'
+import {Button, Form, Input,Container,Card,Popover} from 'antd'
 import React,{ useCallback, useRef, useState, useEffect} from 'react';
 import Script from 'next/script';
-import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { Map, MapInfoWindow, MapMarker } from "react-kakao-maps-sdk";
 import Head from 'next/head';
 import styled from 'styled-components';
 import axios from 'axios';
 import styles from '../styles/Home.module.css'
 
-const PostMap = ({markerdata}) =>
-{  
-
-    const[latitude, setLatitude] = useState('');
-    const[longitude, setLongitude] = useState('');
-    const[text,setText] = useState('');
-
-    const onChangeText = useCallback((e)=>
-    {
-        setText(e.target.value)
-        console.log(text)
-    })
-    const onSubmit = useCallback((e)=>{
-            console.log(text)
-            console.log(latitude, longitude)
-            axios.post('https://api.withrun.click/crewinfo/post',{
-
-                'Authorization' : 
-                localStorage.getItem('token'),
-                'crewInfoDTO':
-                {
-                  'content': text,
-                  'latitude': latitude,
-                  'longitude': longitude 
-                }
-    
-            }).then((res)=>{
-             
-               console.log(res.data)
-        
-                console.log(res)
-              }).catch(function(error) {
-              
-              });
-        
-            },[text]);
-    
+const PostMap = () =>
+{ const [mainData,setMainData] = useState('');
+  useEffect((e)=>
+  {
+    axios.get('https://api.withrun.click/crewinfo')
+    .then((res)=>{
+      setMainData(res.data)
+    }
+    )
+  })
+  
+  
 
     const [state, setState] = useState({
         center: {
@@ -59,9 +34,8 @@ const PostMap = ({markerdata}) =>
           navigator.geolocation.getCurrentPosition(
             (position) => 
             {  
-              setLatitude(position.coords.latitude),
-              setLongitude(position.coords.longitude),
-              console.log(latitude,longitude)
+              localStorage.setItem('latitude',position.coords.latitude)
+              localStorage.setItem('longitude',position.coords.longitude)
               setState((prev) => ({
                 ...prev,
                 center: {
@@ -86,7 +60,7 @@ const PostMap = ({markerdata}) =>
           // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
           setState((prev) => ({
             ...prev,
-            errMsg: "geolocation을 사용할수 없어요..",
+            errMsg: "geolocation을 사용할수 없어요.",
             isLoading: false,
           }))
         }
@@ -107,11 +81,11 @@ const PostMap = ({markerdata}) =>
                             주변
                             <a style={{textDecoration:'none'}}>모집글</a>
           </h4> 
-          
+      
           <Card  bordered={false} >
           
-        <Form style={{margin: '0px 0 0px'}} bordered={false} encType="multipart/form-data" onFinish={onSubmit}>
-                
+        <Form style={{margin: '0px 0 0px'}} bordered={false} encType="multipart/form-data" >
+         
                 <Map 
                 id = 'map'
                 center={state.center}
@@ -121,26 +95,56 @@ const PostMap = ({markerdata}) =>
             >
                 
                 {!state.isLoading && (
-                <MapMarker position={state.center}>
-                    <div style={{ padding: "3px", color: "#000" ,margin: '0px  0px'}}>
-                    {state.errMsg ? state.errMsg : "지금 나의 위치👻"}
+                  <>
+                <MapMarker position={state.center} >
+                      {/* <Popover content={'현재 나의 위치가 표시됩니다.'} title={localStorage.getItem('userId')}>
+                      <Button style={{zIndex:'1'}}>현재 나의 위치!</Button>
+                     </Popover> */}
+                   
+                   <div style={{ margin:"5 10 10 5 ",  padding: "5px", color: "#010" ,zIndex:'9000'}}>
+                          현재 나의 위치
                     </div>
                 </MapMarker>
+                </>
                 )}
               
-                  {/* <MapMarker // 마커를 생성합니다
-                        position={{
-                        // 마커가 표시될 위치입니다
-                        lat: lat,
-                        lng: lng,
-                        }}
+              { mainData.results &&
+                mainData.results.map((a,i)=>{
+                    return(
+                     <>
+                  <MapMarker
+                      // 마커를 생성합니다
+                         position={{
+                                    
+                                        lat: mainData.results[i].latitude,
+                                        lng: mainData.results[i].longitude
+                                      
+                                }}
+                       
+                        image={{
+                                  src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다
+                                  size: {
+                                    width: 24,
+                                    height: 35
+                                  }, // 마커이미지의 크기입니다
+                                }}
+                                
                     >
-                         <div style={{ padding: "3px", color: "#000" ,margin: '0px  0px'  }}>
-                           상대방의 위치👻
-                        </div>
-                    </MapMarker> */}
-                </Map>
+                      <div style={{ margin:"5 10 10 5 ",  padding: "0px", color: "#000" }}>
+                       {mainData.results[i].content}
+                       </div>
+                  
+                   
+                      </MapMarker>
+                    </>
+                  )
+                })
+              } 
+                
+           
+                   </Map>
         </Form>
+
         </Card>
         </>
     

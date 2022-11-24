@@ -17,25 +17,28 @@ const PostForm = () =>
     const onChangeText = useCallback((e)=>
     {
         setText(e.target.value)
-        console.log(text)
+  
     })
     const onSubmit = useCallback((e)=>{
-            console.log(text)
-            console.log(latitude, longitude)
-            axios.post('https://api.withrun.click/crewinfo/post',{
-
-                'Authorization' : 
-                'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5IiwiaXNzIjoiV2l0a…RmuH6MfQ9a8oHiV8BF2E63ZUpldbUOG7xrdfPv7_tm6j8c_ig',
-                'crewInfoDTO':
-                {
-                  'content': text,
-                  'latitude': latitude,
-                  'longitude': longitude 
-                }
-    
-            }).then((res)=>{
+            
+            axios.post('https://api.withrun.click/crewinfo/posting',{    
+                
+                  'content': text,  
+                  'latitude':localStorage.getItem('latitude'),
+                  'longitude':localStorage.getItem('longitude')
+                  
+            },
+            {
+              headers:
+              {
+                "Authorization" : "Bearer "+localStorage.getItem('Authorization')
+              }
+            }
+            
+            ).then((res)=>{
              
                console.log(res.data)
+               window.location='/main';
         
                 console.log(res)
               }).catch(function(error) {
@@ -105,7 +108,7 @@ const PostForm = () =>
         <Form style={{margin: '10px 0 0px'}} bordered={false} encType="multipart/form-data" onFinish={onSubmit}>
                 
             
-               <Input.TextArea value={text} onChange={onChangeText} maxLength={1000} rows={3} cols={1}
+               <Input.TextArea value={text} onChange={onChangeText} maxLength={100} rows={3} cols={1}
             placeholder="모집글을 작성해주세요!"
             />
             <div>
