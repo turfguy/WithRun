@@ -20,10 +20,13 @@ const PostList = ({post})=>
       }
       setLoading(true);
       fetch('https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo')
-        .then((res) => res.json())
+        .then((res) =>
+         res.json()
+        )
         .then((body) => {
           setData([...data, ...body.results]);
           setLoading(false);
+          console.log(body)
         })
         .catch(() => {
           setLoading(false);
@@ -64,9 +67,9 @@ const PostList = ({post})=>
                         <List
                         dataSource={data}
                         renderItem={(item) => (
-                            <List.Item key={item.email}>
+                            <List.Item key= {item.email}>
                             <List.Item.Meta
-                                avatar={<Avatar src={item.picture.large} />}
+                                avatar={<Avatar>{item.name.last[0]}</Avatar>}
                                 title={<a href="https://ant.design">{item.name.last}</a>}
                                 description={item.email}
                             />

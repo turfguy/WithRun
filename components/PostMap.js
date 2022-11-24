@@ -1,5 +1,5 @@
 import {Button, Form, Input,Container,Card} from 'antd'
-import { useCallback, useRef, useState, useEffect} from 'react';
+import React,{ useCallback, useRef, useState, useEffect} from 'react';
 import Script from 'next/script';
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import Head from 'next/head';
@@ -7,13 +7,14 @@ import styled from 'styled-components';
 import axios from 'axios';
 import styles from '../styles/Home.module.css'
 
-const PostMap = () =>
+const PostMap = ({markerdata}) =>
 {   
 
     const[latitude, setLatitude] = useState('');
     const[longitude, setLongitude] = useState('');
     const[text,setText] = useState('');
-    const testMarker = {latitude:'37.2781831' , longitude: '127.0431222'}
+    const lat = '37.2781831' 
+    const lng =  '127.0431222'
     const onChangeText = useCallback((e)=>
     {
         setText(e.target.value)
@@ -92,6 +93,7 @@ const PostMap = () =>
         }
       }, [])
     
+      
 
     return(
         <>
@@ -103,33 +105,41 @@ const PostMap = () =>
                 />   
         </Head>
         <h4 className={styles.title2} style={{ }}>
-                            내주변
+                            주변
                             <a style={{textDecoration:'none'}}>모집글</a>
-          </h4>     
+          </h4> 
+          
           <Card  bordered={false} >
-          {/* <h4 className={styles.title2}>
-                            모집글 <a style={{textDecoration:'none'}}>작성</a>
-          </h4> */}
+          
         <Form style={{margin: '0px 0 0px'}} bordered={false} encType="multipart/form-data" onFinish={onSubmit}>
                 
                 <Map 
+                id = 'map'
                 center={state.center}
                 
                 style={{ width: "100%", height: "530px" }}
                 level={3} 
             >
+                
                 {!state.isLoading && (
                 <MapMarker position={state.center}>
-                    <div style={{ padding: "5px", color: "#000" }}>
-                    {state.errMsg ? state.errMsg : "나의 현위치"}
+                    <div style={{ padding: "3px", color: "#000" ,margin: '0px  0px'}}>
+                    {state.errMsg ? state.errMsg : "지금 나의 위치👻"}
                     </div>
                 </MapMarker>
                 )}
-                 <MapMarker position={testMarker}>
-                    <div style={{ padding: "5px", color: "#000" }}>
-                   
-                    </div>
-                </MapMarker>
+              
+                  <MapMarker // 마커를 생성합니다
+                        position={{
+                        // 마커가 표시될 위치입니다
+                        lat: lat,
+                        lng: lng,
+                        }}
+                    >
+                         <div style={{ padding: "3px", color: "#000" ,margin: '0px  0px'  }}>
+                           상대방의 위치👻
+                        </div>
+                    </MapMarker>
                 </Map>
         </Form>
         </Card>

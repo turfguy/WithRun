@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import {Menu, Input, Space, Row, Col, Card} from 'antd';
-import { MailOutlined, AppstoreOutlined, SettingOutlined, SearchOutlined, CommentOutlined,AudioOutlined, ExperimentTwoTone, ProfileTwoTone, ThunderboltTwoTone,IdcardTwoTone, TwitterCircleFilled, TwitterSquareFilled} from '@ant-design/icons';
+import { MailOutlined, AppstoreOutlined, SettingOutlined, SearchOutlined, CommentOutlined,AudioOutlined, ExperimentTwoTone, ProfileTwoTone, ThunderboltTwoTone,IdcardTwoTone, TwitterCircleFilled, TwitterSquareFilled, ThunderboltOutlined} from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import { useState, useCallback } from 'react';
 import PostForm from '../components/PostForm';
@@ -16,32 +16,33 @@ export default function Main() {
     return (
         <div>
           
-                <h1 className={styles.title} style={{fontWeight: 'bold', marginTop: '30px', marginBottom: '30px'}} >
+                <h1 className={styles.title} style={{fontWeight: 'bold', marginTop: '30px', marginBottom: '50px'}} >
                             With <a style={{textDecoration:'none'}}>Run</a>
                 </h1>
-        
-       
-        <Menu style={{marginTop:'30' , marginBottom: 30}}theme='light' mode='horizontal'>
-            
-            <Menu.Item  icon={<ThunderboltTwoTone />}>
+                <Menu style={{  marginBottom: 30}}theme='dark' mode='horizontal'>
+          
+                <Menu.Item  icon={<ThunderboltOutlined />}>
                 
-                        <a className='styles.title3'  style={{textDecoration: 'none'}}>WithRun</a>
+                        <a className='styles.title3'  style={{textDecoration: 'none'}}>런메이트</a>
             
-            </Menu.Item>
-        <Menu.Item icon={<CommentOutlined />}>
-            
-        <Link href="/comm">
-                    자유게시판
-            </Link>
+                 </Menu.Item> 
+                <Menu.Item icon={<CommentOutlined />}>
+                    
+                <Link href="/comm">
+                            자유게시판
+                    </Link>
 
-        </Menu.Item>
+                </Menu.Item>
 
-        
+                
 
-        </Menu>
-        <Row gutter={8} >
+                </Menu>
+
+       
+               <Row gutter={8} >
             
             <Col xs={24} md={1}>
+            
             </Col>
             <Col xs={24} md={17}>
                

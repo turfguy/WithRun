@@ -25,7 +25,7 @@ export default function Home() {
     axios.post('https://api.withrun.click/auth/signin',{
           'userId': userId, 'password': password
       }).then((res)=>{
-      //  window.location = '/main';
+      window.location = '/main';
        console.log(res.data)
 
         console.log(res)
