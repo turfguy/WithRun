@@ -74,7 +74,6 @@ const PostList = ()=>
                                     title={item.author}
                                     description={item.content}
                                   />
-                                  <div>Content</div>
                                 </List.Item>
                               )}
                             />

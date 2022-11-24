@@ -38,6 +38,7 @@ const PostMap = () =>
             {  
               localStorage.setItem('latitude',position.coords.latitude)
               localStorage.setItem('longitude',position.coords.longitude)
+              console.log('현재위치:',localStorage.getItem('latitude'),localStorage.getItem('longitude'))
               setState((prev) => ({
                 ...prev,
                 center: {

@@ -58,7 +58,10 @@ export default function  Signup()
       setAutoCompleteResult(['.com', '.org', '.net'].map((domain) => `${value}${domain}`));
     }
   };
-    
+    const [authCode,setAuthCode] = useState('');
+    const onChangeAuthCode = useCallback((e)=>{
+      setAuthCode(e.target.value)
+    })
     const [userId,setUserId] = useState('');
     const onChangeUserId = useCallback((e)=>{
         setUserId(e.target.value)
@@ -125,7 +128,14 @@ export default function  Signup()
             },
           ]}
         >
-        <Input value={userId} required onChange={onChangeUserId}/>
+          {/* <Row gutter={8}>
+          <Col span={20}> */}
+        <Input value={userId}  style={{float:'left'}}required onChange={onChangeUserId}/>
+        {/* </Col>
+          <Col span={4}> */}
+        {/* <Button type="default" style={{ marginTop:'10', float:'left'}}>중복확인</Button> */}
+        {/* </Col>
+        </Row> */}
       </Form.Item>
       <Form.Item
         name="email"
@@ -141,9 +151,30 @@ export default function  Signup()
           },
         ]}
       >
+         {/* <Row gutter={8}>
+          <Col span={20}> */}
         <Input value={email} required onChange={onChangeEmail}/>
+        {/* </Col> */}
+          {/* <Col span={4}>
+          <Button type="default" style={{ marginTop:'10', float:'left'}}>인증번호 발송</Button>
+          </Col>
+        </Row> */}
       </Form.Item>
-
+      {/* <Form.Item
+        name="Authorization Code"
+        label="E-mail Authorization Code"
+        required
+      >
+         <Row gutter={8}>
+          <Col span={20}>
+        <Input value={authCode} required  onChange={onChangeAuthCode}/>
+        </Col>
+          <Col span={4}>
+          <Button type="default" style={{ marginTop:'10', float:'left'}}>인증하기</Button>
+          </Col>
+        </Row>
+      </Form.Item> */}
+        
       <Form.Item
         name="password"
         label="Password"
