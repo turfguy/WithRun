@@ -8,13 +8,12 @@ import axios from 'axios';
 import styles from '../styles/Home.module.css'
 
 const PostMap = ({markerdata}) =>
-{   
+{  
 
     const[latitude, setLatitude] = useState('');
     const[longitude, setLongitude] = useState('');
     const[text,setText] = useState('');
-    const lat = '37.2781831' 
-    const lng =  '127.0431222'
+
     const onChangeText = useCallback((e)=>
     {
         setText(e.target.value)
@@ -26,7 +25,7 @@ const PostMap = ({markerdata}) =>
             axios.post('https://api.withrun.click/crewinfo/post',{
 
                 'Authorization' : 
-                'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5IiwiaXNzIjoiV2l0a…RmuH6MfQ9a8oHiV8BF2E63ZUpldbUOG7xrdfPv7_tm6j8c_ig',
+                localStorage.getItem('token'),
                 'crewInfoDTO':
                 {
                   'content': text,
@@ -129,7 +128,7 @@ const PostMap = ({markerdata}) =>
                 </MapMarker>
                 )}
               
-                  <MapMarker // 마커를 생성합니다
+                  {/* <MapMarker // 마커를 생성합니다
                         position={{
                         // 마커가 표시될 위치입니다
                         lat: lat,
@@ -139,7 +138,7 @@ const PostMap = ({markerdata}) =>
                          <div style={{ padding: "3px", color: "#000" ,margin: '0px  0px'  }}>
                            상대방의 위치👻
                         </div>
-                    </MapMarker>
+                    </MapMarker> */}
                 </Map>
         </Form>
         </Card>

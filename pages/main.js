@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {Menu, Input, Space, Row, Col, Card} from 'antd';
 import { MailOutlined, AppstoreOutlined, SettingOutlined, SearchOutlined, CommentOutlined,AudioOutlined, ExperimentTwoTone, ProfileTwoTone, ThunderboltTwoTone,IdcardTwoTone, TwitterCircleFilled, TwitterSquareFilled, ThunderboltOutlined} from '@ant-design/icons';
 import 'antd/dist/antd.css';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import PostForm from '../components/PostForm';
 import ReactMapGL, { NavigationControl, FlyToInterpolator } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -10,9 +10,15 @@ import PostCard from '../components/PostCard';
 import styles from '../styles/Home.module.css';
 import PostList from '../components/PostList';
 import PostMap from '../components/PostMap';
+import axios from 'axios';
 
 export default function Main() {
-    
+   
+    useEffect((e)=>
+    {
+        console.log('ho')
+    })
+
     return (
         <div>
           
@@ -26,11 +32,8 @@ export default function Main() {
                         <a className='styles.title3'  style={{textDecoration: 'none'}}>런메이트</a>
             
                  </Menu.Item> 
-                <Menu.Item icon={<CommentOutlined />}>
-                    
-                <Link href="/comm">
+                <Menu.Item icon={<CommentOutlined />} >
                             자유게시판
-                    </Link>
 
                 </Menu.Item>
 

@@ -25,10 +25,12 @@ export default function Home() {
     axios.post('https://api.withrun.click/auth/signin',{
           'userId': userId, 'password': password
       }).then((res)=>{
-      window.location = '/main';
+      
        console.log(res.data)
-
-        console.log(res)
+       localStorage.clear()
+       localStorage.setItem('userId', res.data.userId)
+       localStorage.setItem('token', res.data.token)
+       window.location = '/main';
       }).catch(function(error) {
          alert('아이디 혹은 패스워드가 옳지 않습니다!')
         console.log(error);

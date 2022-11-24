@@ -12,6 +12,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 const PostList = ({post})=>
 {   
+      
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
     const loadMoreData = () => {
@@ -26,7 +27,6 @@ const PostList = ({post})=>
         .then((body) => {
           setData([...data, ...body.results]);
           setLoading(false);
-          console.log(body)
         })
         .catch(() => {
           setLoading(false);
@@ -70,10 +70,12 @@ const PostList = ({post})=>
                             <List.Item key= {item.email}>
                             <List.Item.Meta
                                 avatar={<Avatar>{item.name.last[0]}</Avatar>}
-                                title={<a href="https://ant.design">{item.name.last}</a>}
-                                description={item.email}
+                                title={item.name.last}
+                                // description={item.email} //글내용
+                                description={'같이 뛸 사람 연락주세요!! 010-3113-0360, 오늘 저녁 8시 광교호수공원'}
                             />
-                            <div>Content</div>
+                            <div>Content</div> 
+                      {/* 시간 , 날짜 정도? */}
                             </List.Item>
                         )}
                         />
