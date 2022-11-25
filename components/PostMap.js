@@ -1,7 +1,7 @@
 import {Button, Form, Input,Container,Card,Popover} from 'antd'
 import React,{ useCallback, useRef, useState, useEffect} from 'react';
 import Script from 'next/script';
-import { Map, MapInfoWindow, MapMarker } from "react-kakao-maps-sdk";
+import { Map, MapInfoWindow, MapMarker,CustomOverlayMap } from "react-kakao-maps-sdk";
 import Head from 'next/head';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -103,13 +103,22 @@ const PostMap = () =>
                       {/* <Popover content={'현재 나의 위치가 표시됩니다.'} title={localStorage.getItem('userId')}>
                       <Button style={{zIndex:'1'}}>현재 나의 위치!</Button>
                      </Popover> */}
-                   
-                   <div style={{ margin:"5 10 10 5 ",  padding: "5px", color: "#010" ,zIndex:'9000'}}>
-                          현재 나의 위치
-                    </div>
+                     현재 나의 위치!
                 </MapMarker>
+              
                 </>
                 )}
+                  <CustomOverlayMap // 커스텀 오버레이를 표시할 Container
+                                  // 커스텀 오버레이가 표시될 위치입니다
+                                  position={state.center}
+                                  // 커스텀 오버레이가에 대한 확장 옵션
+                                  xAnchor={0.3}
+                                  yAnchor={0.91}
+                                >
+                                  <Popover content='작성하신 글이 이곳에 작성됩니다!' >
+                                    <Button type="" style={{opacity:'0'}}>테스트</Button>
+                                  </Popover>
+                                </CustomOverlayMap>
               
               { mainData.results &&
                 mainData.results.map((a,i)=>{
@@ -133,12 +142,26 @@ const PostMap = () =>
                                 }}
                                 
                     >
-                      <div style={{ margin:"5 10 10 5 ",  padding: "0px", color: "#000" }}>
-                       {mainData.results[i].content}
-                       </div>
-                  
-                   
                       </MapMarker>
+                      {/* <div style={{ margin:"5 10 10 5 ",  padding: "0px", color: "#000" }}>
+                       {mainData.results[i].content}
+                       </div> */}
+                          <CustomOverlayMap // 커스텀 오버레이를 표시할 Container
+                                  // 커스텀 오버레이가 표시될 위치입니다
+                                  position={{
+                                    lat: mainData.results[i].latitude,
+                                    lng: mainData.results[i].longitude
+                                  }}
+                                  // 커스텀 오버레이가에 대한 확장 옵션
+                                  xAnchor={0.3}
+                                  yAnchor={0.91}
+                                >
+                                  <Popover content={mainData.results[i].content} title={mainData.results[i].author}>
+                                    <Button type="" style={{opacity:'0'}}>{mainData.results[i].author}</Button>
+                                  </Popover>
+                                </CustomOverlayMap> 
+                   
+                      
                     </>
                   )
                 })
