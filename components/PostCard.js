@@ -9,25 +9,10 @@ import Head from "next/head";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import axios from "axios";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import CommentForm from "./CommentForm";
 
-const PostCard = ({post})=>
+const PostCard = ()=>
 {   
-
-    const [commentId,setCommentId] = useState('최현욱');
-    const [commentCon,setCommentCon] = useState('좋아요');
-    
-    
-    
-    const [state, setState] = useState({
-        center: {
-          lat: 33.450701,
-          lng: 126.570667,
-        },
-        errMsg: null,
-        isLoading: true,
-      })
-
-
     const [id,setId] = useState ('1');
     const [liked,setLiked] = useState(false);
     const [commentFormOpened, setCommmentFormOpened] =  useState(false);
@@ -40,22 +25,23 @@ const PostCard = ({post})=>
     {
         commentFormOpened? setCommmentFormOpened(false) : setCommmentFormOpened(true)
     };
+ 
     return(
-        <>
-        <Head>
-            <script
-                type="text/javascript"
-                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cde9d5084f1eaf59090943b96589e58f&libraries=services,clusterer&autoload=false"        
-                
-                />   
-        </Head>
-        <div style={{marginBottom : 20, marginTop: 10 }}>
-        <Card>
-        <Button onClick={postTest}>
-            Test
-        </Button>
+        // Get 받아서 Map으로 그려주도록하자
+        <> 
+        <div style={{marginBottom : 20, marginTop: 50 }}>
        
+        
             <Card
+            hoverable='true'
+            cover={
+                <img
+                  alt="example"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                width="auto"
+                  height="100"
+                />
+              }
             actions={[
                 liked? <HeartTwoTone twoToneColor="#eb2f96" key="heart" onClick={onToggleLike} /> : 
                 <HeartOutlined key="heart" onClick={onToggleLike}/> ,
@@ -78,32 +64,22 @@ const PostCard = ({post})=>
                 <Card.Meta style={{}}
                     avatar = {<Avatar>글쓴이</Avatar>}
                     title = '글쓴이'
-                    description = '오늘 뛰실 분은 연락주세요'
-                    
+                    description = '수원시에서 달리고 있습니다!! 관심있으신 분은 연락주세요'        
                 />
-                      <Map
-            center={{ lat: 33.5563, lng: 126.79581 }}
-            style={{ width: "100%", height: "400px" ,marginTop: '20px' }}
-            >
-            <MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
-                <div style={{ color: "#000" }}>작성자의 위치</div>
-            </MapMarker>
-            </Map>
             </Card>
             {commentFormOpened && 
             (<div>
-                <CommentForm />
-                
+                <CommentForm/>
                 <List
-                    header={`${commentCon.length}개의 댓글`}
+                    header={`개의 댓글`}
                     itemLayout="horizontal"
-                    dataSource={commentCon}
+                    dataSource='ㅎㅇ'
                     renderItem= {(item)=>(
                         <li>
                             <Comment
-                                author={commentId}
-                                avatar={<Avatar>{commentId[0]}</Avatar>}
-                                content={commentCon}
+                                author='ㅎㅇ'
+                                avatar={<Avatar>댓글</Avatar>}
+                                content='ㅎㅇ'
                             />
                         </li>
                 )}
@@ -111,21 +87,10 @@ const PostCard = ({post})=>
             
             </div>)
             }
-            </Card>
         </div>
         </>
     );
 }
 
-PostCard.propTypes = {
-    post : propTypes.shape({
-        id : propTypes.number ,
-        User : propTypes.object,
-        content : propTypes.string,
-        createdAt : propTypes.object,
-        Comments : propTypes.arrayOf(propTypes.object),
-    }).isRequired,
-
-};
 
 export default PostCard;

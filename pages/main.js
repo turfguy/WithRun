@@ -30,7 +30,8 @@ export default function Main() {
             
                  </Menu.Item> 
                 <Menu.Item icon={<CommentOutlined />} >
-                            자유게시판
+                      
+                <a  href='/comm' className='styles.title3'  style={{textDecoration: 'none'}}> 홍보게시판 </a>
 
                 </Menu.Item>
 

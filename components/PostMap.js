@@ -103,7 +103,7 @@ const PostMap = () =>
                       {/* <Popover content={'현재 나의 위치가 표시됩니다.'} title={localStorage.getItem('userId')}>
                       <Button style={{zIndex:'1'}}>현재 나의 위치!</Button>
                      </Popover> */}
-                     현재 나의 위치!
+                     {/* 현재 나의 위치! */}
                 </MapMarker>
               
                 </>
