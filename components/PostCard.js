@@ -39,7 +39,7 @@ const PostCard = ()=>
                   alt="example"
                   src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
                 width="auto"
-                  height="100"
+                  height="300"
                 />
               }
             actions={[
