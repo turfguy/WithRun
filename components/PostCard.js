@@ -13,14 +13,20 @@ import CommentForm from "./CommentForm";
 
 const PostCard = ()=>
 {   
-    const [id,setId] = useState ('1');
+    const [data, setData] = useState([]);
+    axios.get('https://api.withrun.click/freepost')
+    .then((res) =>res.json())
+     .then((body) => {
+       setData([...data, ...body]);
+       
+     })
+     .catch((error) => {
+         console.log(error)
+          });
     const [liked,setLiked] = useState(false);
     const [commentFormOpened, setCommmentFormOpened] =  useState(false);
 
-    function onToggleLike ()
-    {
-        liked? setLiked(false): setLiked(true)
-    };
+   
     function onToggleComment ()
     {
         commentFormOpened? setCommmentFormOpened(false) : setCommmentFormOpened(true)
@@ -30,63 +36,110 @@ const PostCard = ()=>
         // Get 받아서 Map으로 그려주도록하자
         <> 
         <div style={{marginBottom : 20, marginTop: 50 }}>
+        <Card
+                hoverable='true'
+                
+                cover={
+                    <img
+                      alt="example"
+                    src='https://cdn.san.chosun.com/news/photo/202107/14996_62759_3629.jpg' 
+                    width="auto"
+                      height="300"
+                    />
+                  }
+                actions={[
+                    commentFormOpened? <MessageTwoTone twoToneColor="#00BFFF" key="comment" onClick={onToggleComment}>댓글</MessageTwoTone>
+                    :<MessageOutlined key="comment" onClick={onToggleComment}>댓글</MessageOutlined>,
+
+               
+                     
+                ]}
+                >
+                
+                    <Card.Meta style={{}}
+                        avatar = {<Avatar>한</Avatar>}
+                        title = '한사랑달리기회'
+                        description = '열정!열정!열정!! 남녀노소 누구나 오세요~ 즐겁게 달리고 건강챙겨요^^ 여러분 사랑합니다 ❤🧡💛💚💙💜🤎🖤🤍'     
+                    />
+                </Card>
+                {commentFormOpened && 
+                    (<div>
+                    <CommentForm/>
+                    <List
+                        header={`2개의 댓글`}
+                        itemLayout="horizontal"
+                        dataSource=''
+                        renderItem= {(item)=>(
+                            <li>
+                                <Comment
+                                    author='김기윤'
+                                    avatar={<Avatar>김</Avatar>}
+                                    content='가입하고싶다..!!'
+                                />
+                            </li>
+                    )}
+                     />
+                
+                    </div>)
+                
+                }
        
-        
-            <Card
-            hoverable='true'
-            cover={
-                <img
-                  alt="example"
-                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                width="auto"
-                  height="300"
-                />
-              }
-            actions={[
-                liked? <HeartTwoTone twoToneColor="#eb2f96" key="heart" onClick={onToggleLike} /> : 
-                <HeartOutlined key="heart" onClick={onToggleLike}/> ,
-                commentFormOpened? <MessageTwoTone twoToneColor="#00BFFF" key="comment" onClick={onToggleComment}/>  
-                :<MessageOutlined key="comment" onClick={onToggleComment} />,
-                <Popover key="more" content={(
-                    <Button.Group>
-                               <> 
-                                <Button type="dashed">수정</Button>
-                                <Button type="dashed">삭제</Button>
-                                </>
-                        
-                    </Button.Group>
-                )}>
-                    <EllipsisOutlined/>
-                </Popover>
-            ]}
-            >
+         { data && data.map((a,i)=>{
+             return(
+                 <>
+                <Card
+                hoverable='true'
+                
+                cover={
+                    <img
+                      alt="example"
+                    //   src={} 이미지 
+                    width="auto"
+                      height="300"
+                    />
+                  }
+                actions={[
+                    commentFormOpened? <MessageTwoTone twoToneColor="#00BFFF" key="comment" onClick={onToggleComment}/>  
+                    :<MessageOutlined key="comment" onClick={onToggleComment} />,
+
+               
+                     
+                ]}
+                >
+                
+                    <Card.Meta style={{}}
+                        avatar = {<Avatar>{data[i].author[0]}</Avatar>}
+                        title = {data[i].author}
+                        description = {data[i].content}     
+                    />
+                </Card>
+                {commentFormOpened && 
+                    (<div>
+                    <CommentForm/>
+                    <List
+                        header={`개의 댓글`}
+                        itemLayout="horizontal"
+                        dataSource=''
+                        renderItem= {(item)=>(
+                            <li>
+                                <Comment
+                                    author='ㅎㅇ'
+                                    avatar={<Avatar>댓글</Avatar>}
+                                    content='ㅎㅇ'
+                                />
+                            </li>
+                    )}
+                     />
+                
+                    </div>)
+                
+                }
+                </>
+             )
+         })
+         }
+          
             
-                <Card.Meta style={{}}
-                    avatar = {<Avatar>글쓴이</Avatar>}
-                    title = '글쓴이'
-                    description = '수원시에서 달리고 있습니다!! 관심있으신 분은 연락주세요'        
-                />
-            </Card>
-            {commentFormOpened && 
-            (<div>
-                <CommentForm/>
-                <List
-                    header={`개의 댓글`}
-                    itemLayout="horizontal"
-                    dataSource='ㅎㅇ'
-                    renderItem= {(item)=>(
-                        <li>
-                            <Comment
-                                author='ㅎㅇ'
-                                avatar={<Avatar>댓글</Avatar>}
-                                content='ㅎㅇ'
-                            />
-                        </li>
-                )}
-                 />
-            
-            </div>)
-            }
         </div>
         </>
     );
