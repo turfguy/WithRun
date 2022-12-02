@@ -36,6 +36,7 @@ const PostCard = ()=>
         // Get 받아서 Map으로 그려주도록하자
         <> 
         <div style={{marginBottom : 20, marginTop: 50 }}>
+        
         <Card
                 hoverable='true'
                 
@@ -65,21 +66,34 @@ const PostCard = ()=>
                 {commentFormOpened && 
                     (<div>
                     <CommentForm/>
-                    <List
-                        header={`2개의 댓글`}
-                        itemLayout="horizontal"
-                        dataSource=''
-                        renderItem= {(item)=>(
-                            <li>
-                                <Comment
-                                    author='김기윤'
-                                    avatar={<Avatar>김</Avatar>}
-                                    content='가입하고싶다..!!'
-                                />
-                            </li>
-                    )}
-                     />
-                
+                    <Comment
+                        actions={[<span key="comment-nested-reply-to">Reply to</span>]}
+                        author={<a>김기윤</a>}
+                        avatar={
+                        <Avatar
+                            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                            alt="Han Solo"
+                        />
+                        }
+                        content={
+                        <p>
+                            가입하고싶어요!!
+                        </p>
+                        }
+                    />
+                     <Comment
+                        actions={[<span key="comment-nested-reply-to">Reply to</span>]}
+                        author={<a>류지호</a>}
+                        avatar={
+                        <Avatar>류</Avatar>
+                        }
+                        content={
+                        <p>
+                            완전 취향저격!!
+                        </p>
+                        }
+                    />
+                    
                     </div>)
                 
                 }
