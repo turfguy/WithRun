@@ -23,13 +23,16 @@
 ## ❄️ Technology used  
 
   *  Next.js  
+  
     - 리액트 기반의 프레임워크로, 리액트의 단점을 보완해주는 부분이 많아서 선택하였습니다.  
-    - 특히나, SSR과 SEO 때문에 선택하게 되었습니다.  
+    - 특히나, SSR과 SEO 때문에 선택하게 되었습니다. 
+
     ✔️page-based routing system  
     ✔️SSG / SSR  
     ✔️Fast Refresh  
 
   * ant-desgin  
+  
     - 완성도 높은 UI 프레임워크   
     - 강력한 브라우징 호환성, UX에 입각한 컴포넌트 구성  
     - 빠른 레이아웃 구성 가능  
