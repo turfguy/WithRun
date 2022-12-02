@@ -48,8 +48,8 @@ export default function Home() {
       <Layout>
       <Content>
         <main className={styles.main}>
-        <h1 className={styles.title}>
-          With <a href="./">Run!</a>
+        <h1 className={styles.title} style={{fontWeight:'bold'}}>
+          With <a style={{textDecoration:'none'}}>Run</a>
         </h1>
       
          <Form style={{marginTop: '20px'}} onFinish={onSubmit}>
