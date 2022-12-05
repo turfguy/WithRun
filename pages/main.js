@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import {Menu, Input, Space, Row, Col, Card} from 'antd';
-import { MailOutlined, AppstoreOutlined, SettingOutlined, SearchOutlined, CommentOutlined,AudioOutlined, ExperimentTwoTone, ProfileTwoTone, ThunderboltTwoTone,IdcardTwoTone, TwitterCircleFilled, TwitterSquareFilled, ThunderboltOutlined} from '@ant-design/icons';
+import { MailOutlined, AppstoreOutlined, SettingOutlined, SearchOutlined, CommentOutlined,FundViewOutlined,AudioOutlined, ExperimentTwoTone, ProfileTwoTone, ThunderboltTwoTone,IdcardTwoTone, TwitterCircleFilled, TwitterSquareFilled, ThunderboltOutlined} from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import { useState, useCallback, useEffect } from 'react';
 import PostForm from '../components/PostForm';
@@ -26,15 +26,19 @@ export default function Main() {
           
                 <Menu.Item  icon={<ThunderboltOutlined />}>
                 
-                        <a className='styles.title3'  style={{textDecoration: 'none'}}>런메이트</a>
+                        <Link href='/main'>런메이트</Link>
             
                  </Menu.Item> 
                 <Menu.Item icon={<CommentOutlined />} >
                       
-                <a  href='/comm' className='styles.title3'  style={{textDecoration: 'none'}}> 홍보게시판 </a>
+                <Link  href='/comm' > 홍보게시판</Link>
 
                 </Menu.Item>
-
+                <Menu.Item icon={<FundViewOutlined />} >
+                           
+                           <Link  href='/nutri' > 영양소분석 </Link>
+           
+                </Menu.Item>
                 
 
                 </Menu>

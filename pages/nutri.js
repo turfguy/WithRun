@@ -12,22 +12,12 @@ import PostList from '../components/PostList';
 import PostMap from '../components/PostMap';
 import axios from 'axios';
 import CrewPost from '../components/CrewPost';
+import NutriPost from '../components/NutriPost';
+import NutriCard from '../components/NutriCard';
 
-export default function Comm() {
+export default function Nutri() {
    
-    const contentStyle = {
-        height: '160px',
-        color: '#fff',
-        lineHeight: '160px',
-        textAlign: 'center',
-        background: '#364d79',
-      };
-
-    const [wirteOpen, setWriteOpen] = useState('false')
-    const onToggleWrite = useCallback((e)=>{
-         wirteOpen !=='true' ? setWriteOpen('true'): setWriteOpen('false')
-         console.log(wirteOpen)
-    })
+ 
 
     return (
         <div>
@@ -39,12 +29,12 @@ export default function Comm() {
           
           <Menu.Item  icon={<ThunderboltOutlined />}>
           
-                  <Link href='/main'>런메이트</Link>
+                        <Link href='/main'>런메이트</Link>
       
            </Menu.Item> 
           <Menu.Item icon={<CommentOutlined />} >
                 
-          <Link  href='/comm' > 홍보게시판</Link>
+                     <Link  href='/comm' > 홍보게시판</Link>
 
           </Menu.Item>
           <Menu.Item icon={<FundViewOutlined />} >
@@ -55,6 +45,7 @@ export default function Comm() {
           
 
           </Menu>
+
        
                <Row gutter={8} >
             
@@ -62,13 +53,15 @@ export default function Comm() {
             
             </Col>
             <Col xs={24} md={20}>
-            
-             <h4 className={styles.title2} >
-                            크루
-                            <a style={{textDecoration:'none'}}>홍보글</a>
-                </h4> 
-                <CrewPost/>
-                <PostCard/>
+            <h4 className={styles.title2} >
+                            영양소
+                            <a style={{textDecoration:'none'}}>분석</a>
+            </h4>
+            <h6 className={styles.title3} > 
+                오늘 먹은 음식의 영양성분을 분석해드려요.
+            </h6>
+            <NutriPost/>   
+            <NutriCard/>
                 
             </Col>  
             

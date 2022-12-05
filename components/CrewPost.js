@@ -27,26 +27,26 @@ const CrewPost = () =>
     })
     const onSubmit = useCallback((e)=>{
             
-            // axios.post('https://api.withrun.click/freepost/post',{    
+            axios.post('https://api.withrun.click/freepost/post',{    
                
-            //     'content': text,  
-            //     'images': normFile,
+                'content': text,  
+                'images': normFile,
 
-            // },
-            // {
-            //   headers:
-            //   {
-            //     "Authorization" : "Bearer "+localStorage.getItem('Authorization')
-            //   }
-            // }
+            },
+            {
+              headers:
+              {
+                "Authorization" : "Bearer "+localStorage.getItem('Authorization')
+              }
+            }
             
-            // ).then((res)=>{
-            //    console.log(res)
-            //    window.location='/comm';
+            ).then((res)=>{
+               console.log(res)
+               window.location='/comm';
         
-            //   }).catch(function(error) {
+              }).catch(function(error) {
               
-            //   });
+              });
         
             },[text,normFile]);
     return(
