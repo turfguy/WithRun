@@ -8,51 +8,66 @@ import axios from 'axios';
 import styles from '../styles/Home.module.css'
 import {UploadOutlined, InboxOutlined} from '@ant-design/icons'
 
-const { Dragger } = Upload;
+// 2. POST - http://118.67.135.208:3000/upload
+// 위 사진과 같이 form-data로 이미지를 "file" 형식으로 요청 보내시면 됩니다. 
+// key는 "image", value는 이미지 파일 1개만 request body에 담아서 요청하시면 돼요!
+
+
+const NutriPost = () =>
+{   
+     
+    
+    const [image,setImage] = useState();
+    const onChangeImage = useCallback((e)=>{
+        setImage(e)
+    })
+    const [imageToggle,setImageToggle] = useState(false);
+    const onToggleImage = useCallback((e)=>
+    {
+        imageToggle === false ? setImageToggle(true): setImageToggle(false);
+    })
+    const { Dragger } = Upload;
     const props = {
         name: 'file',
         multiple: true,
-        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+        action: '',
         onChange(info) {
+          
         const { status } = info.file;
+        onChangeImage(info.file);
         if (status !== 'uploading') {
-            console.log(info.file, info.fileList);
+            console.log(info.file);
         }
         if (status === 'done') {
             message.success(`${info.file.name} file uploaded successfully.`);
+            
+            
         } else if (status === 'error') {
             message.error(`${info.file.name} file upload failed.`);
         }
         },
         onDrop(e) {
         console.log('Dropped files', e.dataTransfer.files);
+        
         },
     };
-const NutriPost = () =>
-{   
-     
-    
 
     const onSubmit = useCallback((e)=>{
-            
-            axios.post('https://api.withrun.click/freepost/post',{    
+            console.log(image);
+            axios.post('http://118.67.135.208:3000/upload',
+            {    
                
-              'image': props
+              'image': image
 
-            },
-            {
-              headers:
-              {
-                "Authorization" : "Bearer "+localStorage.getItem('Authorization')
-              }
             }
             
             ).then((res)=>{
                console.log(res)
-               window.location='/comm';
+               console.log('hi')
         
               }).catch(function(error) {
-              
+                console.log(error)
+                console.log('에러뜸')
               });
         
             });
@@ -75,10 +90,35 @@ const NutriPost = () =>
                 <Button type="primary" style={{ float: 'right', marginTop: '10px' }} htmlType="submit">분석</Button>    
          </div>
          </Form>
-        
-        <div>           
-
+         
+         <div style={{marginBottom : 20, marginTop: 50 }}>
+        {imageToggle &&
+                  
+                  (  <Card
+                    hoverable='true'
                     
+                       >
+                           영양소 정보 :  
+                           칼로리  :
+                           이름:
+                           열량:
+    {/*                 
+                        <Card.Meta style={{}}
+                            description = ''     
+                        /> */}
+                    </Card>
+
+                  )
+                        
+        }
+        
+                
+                
+       
+         
+         
+          
+            
         </div>
        
         </>

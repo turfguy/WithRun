@@ -13,7 +13,6 @@ import PostMap from '../components/PostMap';
 import axios from 'axios';
 import CrewPost from '../components/CrewPost';
 import NutriPost from '../components/NutriPost';
-import NutriCard from '../components/NutriCard';
 
 export default function Nutri() {
    
@@ -60,8 +59,7 @@ export default function Nutri() {
             <h6 className={styles.title3} > 
                 오늘 먹은 음식의 영양성분을 분석해드려요.
             </h6>
-            <NutriPost/>   
-            <NutriCard/>
+            <NutriPost/> 
                 
             </Col>  
             

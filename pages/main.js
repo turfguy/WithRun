@@ -59,7 +59,7 @@ export default function Main() {
             <Col xs={24} md={5} >
                      {/* <PostCard style={{}}/> */}
                     <PostList style={{marginTop:'50px'}}/>
-                    <PostForm/>
+                    <PostForm />
                     
             </Col>
             <Col xs={24} md={1}>

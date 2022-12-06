@@ -20,10 +20,12 @@ const PostList = ()=>
         }
         setLoading(true);
         // fetch('https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo')
+        
         fetch('https://api.withrun.click/crewinfo')
-         .then((res) =>res.json())
+         .then((res) =>
+          res.json())
           .then((body) => {
-            setData([...data, ...body.results]);
+            setData([...data, ...body.results.reverse()]);
             
             setLoading(false);
           })

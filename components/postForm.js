@@ -25,7 +25,7 @@ const PostForm = () =>
                 
                   'content': text,  
                   'latitude':localStorage.getItem('latitude'),
-                  'longitude':localStorage.getItem('longitude')
+                  'longitude':localStorage.getItem('longitude'),
                   
             },
             {
@@ -36,9 +36,7 @@ const PostForm = () =>
             }
             
             ).then((res)=>{
-             
-               window.location='/main';
-        
+               setText('');
               }).catch(function(error) {
               
               });
