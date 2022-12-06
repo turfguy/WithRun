@@ -39,7 +39,6 @@ const PostCard = ()=>
         
         <Card
                 hoverable='true'
-                
                 cover={
                     <img
                       alt="example"
@@ -49,8 +48,8 @@ const PostCard = ()=>
                     />
                   }
                 actions={[
-                    commentFormOpened? <MessageTwoTone twoToneColor="#00BFFF" key="comment" onClick={onToggleComment}>댓글</MessageTwoTone>
-                    :<MessageOutlined key="comment" onClick={onToggleComment}>댓글</MessageOutlined>,
+                    commentFormOpened? <MessageTwoTone twoToneColor="#00BFFF" key="comment" onClick={onToggleComment}>'댓글'</MessageTwoTone>
+                    :<MessageOutlined key="comment" onClick={onToggleComment} description='댓글'/>,
 
                
                      
@@ -60,7 +59,7 @@ const PostCard = ()=>
                     <Card.Meta style={{}}
                         avatar = {<Avatar>한</Avatar>}
                         title = '한사랑달리기회'
-                        description = '열정!열정!열정!! 남녀노소 누구나 오세요~ 즐겁게 달리고 건강챙겨요^^ 여러분 사랑합니다 ❤🧡💛💚💙💜🤎🖤🤍'     
+                        description = '열정!열정!열정!! 남녀노소 누구나 오세요~ 즐겁게 달리고 건강챙겨요^^ 여러분 사랑합니다 ❤🧡💛💚💙💜🤎🖤🤍'  
                     />
                 </Card>
                 {commentFormOpened && 
