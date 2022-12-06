@@ -15,12 +15,13 @@ const CrewPost = () =>
   const [uploading, setUploading] = useState(false);
   const handleUpload = useCallback(() => {
     const formData = new FormData();
+    
    
-    console.log(fileList[0])
     fileList.forEach((file) => {
       formData.append('files[]', file);
-      console.log('file',file)
+      console.log(formData)
          });
+         
     setUploading(true);
 
     // You can use any AJAX library you like
@@ -33,7 +34,7 @@ const CrewPost = () =>
       },
       title : ' ',
       content: text,
-      image: formData,
+      image: formData,  
     })
       .then((res) => res.json())
       .then(() => {

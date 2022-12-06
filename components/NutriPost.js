@@ -21,7 +21,6 @@ const NutriPost = () =>
     const onChangeImage = useCallback((e)=>{
         console.log('e가 뭔데',e)
         setImage(e)
-        console.log(image)
     })
     const [imageToggle,setImageToggle] = useState(false);
     const onToggleImage = useCallback((e)=>
@@ -85,7 +84,7 @@ const NutriPost = () =>
       
         <Form style={{margin: '10px 0 0px'}} bordered={false} encType="multipart/form-data" onFinish={onSubmit}>
         
-        <Dragger {...props}>
+        <Dragger {...props} maxCount={1}>
             <p className="ant-upload-drag-icon">
             <InboxOutlined />
             </p>
@@ -105,7 +104,7 @@ const NutriPost = () =>
         
         
         
-        {imageToggle &&
+        {imageToggle === true &&
                   
                   (  <Card
                     hoverable='true'
@@ -123,7 +122,6 @@ const NutriPost = () =>
 
                   )
                   
-                        
         }
         
                 
