@@ -35,6 +35,23 @@
     - 강력한 브라우징 호환성, UX에 입각한 컴포넌트 구성  
     - 빠른 레이아웃 구성 가능   
   
+## ❄️ 주요기술 
+* 로그인 & 회원가입
+  
+  ![login](./public/%EB%A1%9C%EA%B7%B8%EC%9D%B8.png)  
+  ![signup](./public/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85.png)  
+
+
+* 런메이트 구인  
+  ![runmate](./public/%EB%9F%B0%EB%A9%94%EC%9D%B4%ED%8A%B8.png)  
+
+* 홍보 게시판  
+  ![adv](./public/%ED%99%8D%EB%B3%B4%EA%B2%8C%EC%8B%9C%ED%8C%90.png)  
+
+* 영양소 분석  
+  ![nutri](./public/%EC%98%81%EC%96%91%EC%86%8C%EB%B6%84%EC%84%9D.png)
+
+
 
 ## ❄️ How to process 
 * Running front-end

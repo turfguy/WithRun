@@ -12,6 +12,7 @@ import {UploadOutlined} from '@ant-design/icons'
 const CrewPost = () =>
 {   
      
+    
       const normFile = (e) => {
         console.log('Upload event:', e);
         if (Array.isArray(e)) {
@@ -26,7 +27,7 @@ const CrewPost = () =>
   
     })
     const onSubmit = useCallback((e)=>{
-            
+            console.log(normFile);
             axios.post('https://api.withrun.click/freepost/post',{    
                
                 'content': text,  

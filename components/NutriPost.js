@@ -1,4 +1,4 @@
-import {Button, Form, Input,Container,Card ,Upload , message} from 'antd'
+import {Button, Form, Input,Container,Card ,Upload , message,Spin} from 'antd'
 import { useCallback, useRef, useState, useEffect} from 'react';
 import Script from 'next/script';
 import { Map, MapMarker } from "react-kakao-maps-sdk";
@@ -19,12 +19,17 @@ const NutriPost = () =>
     
     const [image,setImage] = useState();
     const onChangeImage = useCallback((e)=>{
+        console.log('e가 뭔데',e)
         setImage(e)
     })
     const [imageToggle,setImageToggle] = useState(false);
     const onToggleImage = useCallback((e)=>
     {
         imageToggle === false ? setImageToggle(true): setImageToggle(false);
+    })
+    const [requestToggle, setRequestToggle] = useState(false);
+    const onToggleRequestToggle = useCallback((e)=>{
+        requestToggle === false? setRequestToggle(true): setRequestToggle(false);
     })
     const { Dragger } = Upload;
     const props = {
@@ -34,6 +39,7 @@ const NutriPost = () =>
         onChange(info) {
           
         const { status } = info.file;
+        
         onChangeImage(info.file);
         if (status !== 'uploading') {
             console.log(info.file);
@@ -54,6 +60,8 @@ const NutriPost = () =>
 
     const onSubmit = useCallback((e)=>{
             console.log(image);
+            onToggleRequestToggle();
+            message.success(`열심히 분석하고 있으니, 잠시만 기다려주세요!`);
             axios.post('http://118.67.135.208:3000/upload',
             {    
                
@@ -92,6 +100,10 @@ const NutriPost = () =>
          </Form>
          
          <div style={{marginBottom : 20, marginTop: 50 }}>
+        
+        
+        
+        
         {imageToggle &&
                   
                   (  <Card
@@ -109,6 +121,7 @@ const NutriPost = () =>
                     </Card>
 
                   )
+                  
                         
         }
         
