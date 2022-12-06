@@ -14,10 +14,18 @@ import CommentForm from "./CommentForm";
 const PostCard = ()=>
 {   
     const [data, setData] = useState([]);
-    axios.get('https://api.withrun.click/freepost')
-    .then((res) =>res.json())
+    axios.get('https://api.withrun.click/freepost',{
+        headers:
+      {
+        "Authorization" : "Bearer "+localStorage.getItem('Authorization')
+      },
+    })
+    .then((res) =>{res.json()
+        console.log(res)
+    })
      .then((body) => {
        setData([...data, ...body]);
+       console.log('data :',data)
        
      })
      .catch((error) => {

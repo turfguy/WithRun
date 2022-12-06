@@ -21,6 +21,7 @@ const NutriPost = () =>
     const onChangeImage = useCallback((e)=>{
         console.log('e가 뭔데',e)
         setImage(e)
+        console.log(image)
     })
     const [imageToggle,setImageToggle] = useState(false);
     const onToggleImage = useCallback((e)=>
