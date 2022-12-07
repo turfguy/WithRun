@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import styles from '../styles/Home.module.css'
 import {UploadOutlined} from '@ant-design/icons'
+import { json } from 'react-router-dom';
 
 
 const CrewPost = () =>
@@ -14,49 +15,74 @@ const CrewPost = () =>
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
   const handleUpload = useCallback(() => {
-    const formData = new FormData();
     
-   
-    fileList.forEach((file) => {
-      formData.append('image', file);
-      console.log(formData)
-         });
+    const formData = new FormData();
+    formData.append('file', fileList);
+    // fileList.forEach((file) => {
+    //   console.log(formData)
+    //      });
          
     setUploading(true);
 
     // You can use any AJAX library you like
-    console.log(typeof(formData));
-    fetch('https://api.withrun.click/freepost/post', {
-      
-      method: 'POST',
-      headers:
-      {
-        "Authorization" : "Bearer "+localStorage.getItem('Authorization'),
-        "Content-type" : 'application/x-www-form-urlencoded'
-      },
-      body:{
-        
-        "title" : ' ',
-        "content": text,
-        "image": formData, 
+    axios.post('https://api.withrun.click/freepost/post',{    
+       
+            'postingDTO': {
+                'title' : " ",
+                'content': text,  
+            },
+            'image' : formData
+        },
+        {
+          headers:
+          {
+            "Authorization" : "Bearer "+localStorage.getItem('Authorization')
+          }
+        }
 
-      },
-      
-    })
-      .then((res) => res.json())
-      .then(() => {
-        setFileList([]);
-        message.success('upload successfully.');
-      })
-      .catch((error) => {
-        message.error('upload failed.');
-        console.log(error);
-      })
-      .finally(() => {
-        setUploading(false);
-      });
+        ).then((res)=>{
+          console.log(res)
+          setFileList([]);
+          message.success('upload successfully.');
+        }).catch(function(error) {
+          message.error('upload failed.');
+          console.log(error);
+          }) .finally(() => {
+          setUploading(false);
+            });
 
-  })
+});
+
+  //   fetch('https://api.withrun.click/freepost/post', {
+      
+  //     method: 'POST',
+  //     headers:
+  //     {
+  //       "Authorization" : "Bearer "+localStorage.getItem('Authorization'),
+  //       // "Content-Type" : 'multipart/form-data'
+  //     },
+  //     body:{
+      
+
+  //     }
+      
+      
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       console.log(res)
+  //       setFileList([]);
+  //       message.success('upload successfully.');
+  //     })
+  //     .catch((error) => {
+  //       message.error('upload failed.');
+  //       console.log(error);
+  //     })
+  //     .finally(() => {
+  //       setUploading(false);
+  //     });
+
+  // })
     
   
   const props = {
@@ -78,32 +104,9 @@ const CrewPost = () =>
         setText(e.target.value)
   
     })
-    const onSubmit = useCallback((e)=>{
-            console.log(normFile);
-            axios.post('https://api.withrun.click/freepost/post',{    
-               
-                'content': text,  
-
-            },
-            {
-              headers:
-              {
-                "Authorization" : "Bearer "+localStorage.getItem('Authorization')
-              }
-            }
-            
-            ).then((res)=>{
-               console.log(res)
-               window.location='/comm';
-        
-              }).catch(function(error) {
-              
-              });
-        
-            },[text]);
     return(
         <>  
-        <Form style={{margin: '10px 0 0px'}} bordered={false} encType="multipart/form-data" onFinish={handleUpload}>
+        <Form style={{margin: '10px 0 0px'}} bordered={false}  >
                 
             
                <Input.TextArea value={text} onChange={onChangeText} maxLength={100} rows={5} cols={1}
@@ -117,7 +120,7 @@ const CrewPost = () =>
                        
                         extra=""
                       >
-                                            <Upload {...props}>
+                                            <Upload {...props} maxCount={1}>
                             <Button style={{marginTop: 10 }}icon={<UploadOutlined />}>홍보 이미지를 업로드해주세요.</Button>
                           </Upload>
                           <Button
@@ -129,6 +132,8 @@ const CrewPost = () =>
                               marginTop: 16,
                               float:'right'
                             }}
+                            onClick={handleUpload}
+
                           >
                             {uploading ? '이미지 업로드와 글 작성을 해주세요!' : '작성'}
                           </Button>

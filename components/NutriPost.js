@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import styles from '../styles/Home.module.css'
 import {UploadOutlined, InboxOutlined} from '@ant-design/icons'
+import FormData  from 'form-data';
 
 // 2. POST - http://118.67.135.208:3000/upload
 // 위 사진과 같이 form-data로 이미지를 "file" 형식으로 요청 보내시면 됩니다. 
@@ -17,11 +18,7 @@ const NutriPost = () =>
 {   
      
     
-    const [image,setImage] = useState();
-    const onChangeImage = useCallback((e)=>{
-        console.log('e가 뭔데',e)
-        setImage(e)
-    })
+    const formData = new FormData();
     const [imageToggle,setImageToggle] = useState(false);
     const onToggleImage = useCallback((e)=>
     {
@@ -36,11 +33,14 @@ const NutriPost = () =>
         name: 'file',
         multiple: true,
         action: '',
-        onChange(info) {
-          
-        const { status } = info.file;
         
-        onChangeImage(info.file);
+        onChange(info) {
+        console.log(info.file)
+        console.log(typeof(info.file))
+        
+        formData.append('image',info.file)
+        const { status } = info.file;
+         
         if (status !== 'uploading') {
             console.log(info.file);
         }
@@ -54,21 +54,22 @@ const NutriPost = () =>
         },
         onDrop(e) {
         console.log('Dropped files', e.dataTransfer.files);
-        
+        formData.append('image',e.dataTransfer.files);
         },
     };
 
     const onSubmit = useCallback((e)=>{
-            console.log(image);
+            
             onToggleRequestToggle();
             message.success(`열심히 분석하고 있으니, 잠시만 기다려주세요!`);
             axios.post('http://118.67.135.208:3000/upload',
-            {    
-               
-              'image': image
-
+            formData,
+            {
+                headers:
+                {
+                    "Content-Type" : 'multipart/form-data'
+                }
             }
-            
             ).then((res)=>{
                console.log(res)
                console.log('hi')
@@ -82,7 +83,7 @@ const NutriPost = () =>
     return(
         <>
       
-        <Form style={{margin: '10px 0 0px'}} bordered={false} encType="multipart/form-data" onFinish={onSubmit}>
+        <Form style={{margin: '10px 0 0px'}} bordered={false}  onFinish={onSubmit}>
         
         <Dragger {...props} maxCount={1}>
             <p className="ant-upload-drag-icon">

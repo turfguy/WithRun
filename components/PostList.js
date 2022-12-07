@@ -10,9 +10,12 @@ import axios from "axios";
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const PostList = ()=>
-{   const [mainData,setMainData] = useState('');
-        
+{     const [mainData,setMainData] = useState('');
+      const onChangeMainData = useCallback((e)=>{
+         setMainData(e.target.value)
+      }) 
       const [loading, setLoading] = useState(false);
+      
       const [data, setData] = useState([]);
       const loadMoreData = () => {
         if (loading) {
