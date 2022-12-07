@@ -16,11 +16,13 @@ const CrewPost = () =>
   const [uploading, setUploading] = useState(false);
   const handleUpload = useCallback(() => {
     
+    console.log(fileList)
     const formData = new FormData();
     formData.append('image', fileList);
+
     const json = JSON.stringify({content:text, title: ' '});
     console.log('json 내용',json)
-    const blob = new Blob ([json],{type : "application/json"});
+    const blob = new Blob ([json], { type : "application/json" });
     console.log('blob',blob) 
     formData.append('postingDTO',json);
     for (let key of formData.keys()) {
@@ -36,7 +38,7 @@ const CrewPost = () =>
           headers:
           {
             "Authorization" : "Bearer "+localStorage.getItem('Authorization'),
-            "Content-Type": "multipart/form-data"
+            'Content-Type': 'multipart/form-data'
           }
         }
 

@@ -17,7 +17,7 @@ import FormData  from 'form-data';
 const NutriPost = () =>
 {   
      
-    
+    const nuriText = ({"name":"고기만두","weight_g":"250.0","calorie_kcal":"454.39","Carbohydrate_g":"55.33","sugars_g":"0.0","fat_g":"18.25","protein_g":"18.66","calcium_mg":"121.64","phosphorus_mg":"234.64","sodium_mg":"888.8","potassium_mg":"767.34","magnesium_mg":"0.0","iron_mg":"4.19","zinc_mg":"3.09","cholesterol_mg":"21.0","transFat_g":"0.0"})
     const formData = new FormData();
     const [imageToggle,setImageToggle] = useState(false);
     const onToggleImage = useCallback((e)=>
@@ -60,24 +60,24 @@ const NutriPost = () =>
 
     const onSubmit = useCallback((e)=>{
             
-            onToggleRequestToggle();
+            setImageToggle(true);
             message.success(`열심히 분석하고 있으니, 잠시만 기다려주세요!`);
-            axios.post('http://118.67.135.208:3000/upload',
-            formData,
-            {
-                headers:
-                {
-                    "Content-Type" : 'multipart/form-data'
-                }
-            }
-            ).then((res)=>{
-               console.log(res)
-               console.log('hi')
+            // axios.post('http://118.67.135.208:3000/upload',
+            // formData,
+            // {
+            //     headers:
+            //     {
+            //         "Content-Type" : 'multipart/form-data'
+            //     }
+            // }    
+            // ).then((res)=>{
+            //    console.log(res)
+            //    console.log('hi')
         
-              }).catch(function(error) {
-                console.log(error)
-                console.log('에러뜸')
-              });
+            //   }).catch(function(error) {
+            //     console.log(error)
+            //     console.log('에러뜸')
+            //   });
         
             });
     return(
@@ -109,12 +109,9 @@ const NutriPost = () =>
                   
                   (  <Card
                     hoverable='true'
+                    style={{'whiteSpace': 'pre-line'}}
                     
-                       >
-                           영양소 정보 :  
-                           칼로리  :
-                           이름:
-                           열량:
+                       >  
     {/*                 
                         <Card.Meta style={{}}
                             description = ''     
