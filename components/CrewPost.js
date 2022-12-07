@@ -18,23 +18,30 @@ const CrewPost = () =>
     
    
     fileList.forEach((file) => {
-      formData.append('files[]', file);
+      formData.append('image', file);
       console.log(formData)
          });
          
     setUploading(true);
 
     // You can use any AJAX library you like
+    console.log(typeof(formData));
     fetch('https://api.withrun.click/freepost/post', {
       
       method: 'POST',
       headers:
       {
-        "Authorization" : "Bearer "+localStorage.getItem('Authorization')
+        "Authorization" : "Bearer "+localStorage.getItem('Authorization'),
+        "Content-type" : 'application/x-www-form-urlencoded'
       },
-      title : ' ',
-      content: text,
-      image: formData,  
+      body:{
+        
+        "title" : ' ',
+        "content": text,
+        "image": formData, 
+
+      },
+      
     })
       .then((res) => res.json())
       .then(() => {
