@@ -20,8 +20,8 @@ const CrewPost = () =>
     formData.append('image', fileList);
     const json = JSON.stringify({content:text, title: ' '});
     console.log('json 내용',json)
-    // const blob = new Blob ([json],{type : "application/json"});
-    // console.log('blob',blob) 
+    const blob = new Blob ([json],{type : "application/json"});
+    console.log('blob',blob) 
     formData.append('postingDTO',json);
     for (let key of formData.keys()) {
       console.log(key, ":", formData.get(key));
