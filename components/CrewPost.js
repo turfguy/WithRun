@@ -17,30 +17,31 @@ const CrewPost = () =>
   const handleUpload = useCallback(() => {
     
     const formData = new FormData();
-    formData.append('file', fileList);
-    // fileList.forEach((file) => {
-    //   console.log(formData)
-    //      });
-         
+    formData.append('image', fileList);
+    const json = JSON.stringify({content:text, title: ' '});
+    console.log('json 내용',json)
+    // const blob = new Blob ([json],{type : "application/json"});
+    // console.log('blob',blob) 
+    formData.append('postingDTO',json);
+    for (let key of formData.keys()) {
+      console.log(key, ":", formData.get(key));
+    }
+    
     setUploading(true);
 
     // You can use any AJAX library you like
-    axios.post('https://api.withrun.click/freepost/post',{    
-       
-            'postingDTO': {
-                'title' : " ",
-                'content': text,  
-            },
-            'image' : formData
-        },
-        {
+    axios.post('https://api.withrun.click/freepost/post',
+             formData ,
+          {
           headers:
           {
-            "Authorization" : "Bearer "+localStorage.getItem('Authorization')
+            "Authorization" : "Bearer "+localStorage.getItem('Authorization'),
+            "Content-Type": "multipart/form-data"
           }
         }
 
         ).then((res)=>{
+         
           console.log(res)
           setFileList([]);
           message.success('upload successfully.');
