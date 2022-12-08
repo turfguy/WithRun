@@ -13,6 +13,7 @@ import FormData  from 'form-data';
 
 const CrewPost = () =>
 {   
+ 
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
   const formData = new FormData();
@@ -75,6 +76,7 @@ const CrewPost = () =>
           }) 
           .finally(() => {
           setUploading(false);
+          setText('');
             });
    
      axios.post('https://api.withrun.click/freepost/post/text',
@@ -97,6 +99,7 @@ const CrewPost = () =>
               console.log('2번 API Response',res)
               message.success('글이 작성되었어요!');
               setImageId('');
+              setText('');
             })
             .catch((error)=>{
               

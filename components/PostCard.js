@@ -14,23 +14,28 @@ import CommentForm from "./CommentForm";
 const PostCard = ()=>
 {   
     const [data, setData] = useState([]);
-    axios.get('https://api.withrun.click/freepost',{
-        headers:
-      {
-        "Authorization" : "Bearer "+localStorage.getItem('Authorization')
-      },
-    })
-    // .then((res) =>{res.json()
-        // console.log(res)
-    // })
-     .then((body) => {
-       setData([...data, ...body]);
-       console.log('data :',data)
-       
-     })
-     .catch((error) => {
-         console.log(error)
-          });
+    useEffect(() => {
+        // Perform localStorage action
+        const item = localStorage.getItem('Authorization')
+        axios.get('https://api.withrun.click/freepost',{
+            headers:
+          {
+            "Authorization" : "Bearer "+item
+          },
+        })
+        // .then((res) =>{res.json()
+            // console.log(res)
+        // })
+         .then((res) => {
+           setData([...data, ...res]);
+           console.log('data :',data)
+           
+         })
+         .catch((error) => {
+             console.log(error)
+              });
+      }, [])
+
     const [liked,setLiked] = useState(false);
     const [commentFormOpened, setCommmentFormOpened] =  useState(false);
 
