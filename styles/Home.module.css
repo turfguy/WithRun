@@ -72,6 +72,11 @@
   text-align: center;
 }
 
+.antCard{
+  margin-top: 20;
+
+}
+
 .description {
   margin: 4rem 0;
   line-height: 1.5;

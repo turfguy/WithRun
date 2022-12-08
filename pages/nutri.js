@@ -48,10 +48,10 @@ export default function Nutri() {
        
                <Row gutter={8} >
             
-            <Col xs={24} md={2}>
+            <Col xs={24} md={6}>
             
             </Col>
-            <Col xs={24} md={20}>
+            <Col xs={24} md={12}>
             <h4 className={styles.title2} >
                             영양소
                             <a style={{textDecoration:'none'}}>분석</a>
@@ -63,7 +63,7 @@ export default function Nutri() {
                 
             </Col>  
             
-            <Col xs={24} md={2}>
+            <Col xs={24} md={6}>
 
             </Col>
 

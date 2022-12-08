@@ -46,10 +46,10 @@ export default function Main() {
        
                <Row gutter={8} >
             
-            <Col xs={24} md={1}>
+            <Col xs={24} md={2}>
             
             </Col>
-            <Col xs={24} md={17}>
+            <Col xs={24} md={15}>
                 <PostMap/>
              
 
@@ -62,7 +62,7 @@ export default function Main() {
                     <PostForm />
                     
             </Col>
-            <Col xs={24} md={1}>
+            <Col xs={24} md={2}>
 
             </Col>
 

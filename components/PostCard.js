@@ -1,5 +1,5 @@
 import { EllipsisOutlined,HeartTwoTone, HeartOutlined, MessageOutlined, RetweetOutlined, MessageTwoTone } from "@ant-design/icons";
-import { Avatar, Button, Card, List, Popover,Comment,Skeleton,Divider } from "antd";
+import { Avatar, Button, Card, List, Popover,Comment,Skeleton,Divider,Space } from "antd";
 import {ButtonGroup,  } from "antd/lib/button/button-group";
 import { useSelector } from "react-redux";
 import propTypes from 'prop-types';
@@ -28,7 +28,7 @@ const PostCard = ()=>
         // })
          .then((res) => {
            console.log(res)
-           setData(...res);
+           setData(res.data);
            console.log('data :',data)
            
          })
@@ -51,7 +51,7 @@ const PostCard = ()=>
         <> 
         <div style={{marginBottom : 20, marginTop: 50 }}>
         
-        <Card
+        {/* <Card
                 hoverable='true'
                 cover={
                     <img
@@ -110,22 +110,32 @@ const PostCard = ()=>
                     </div>)
                 
                 }
-       
-         {/* { data && data.map((a,i)=>{
+        */}
+         { data && data.map((a,i)=>{
              return(
                  <>
+                 <Space
+                    direction="vertical"
+                    size="large"
+                    style={{
+                    display: 'flex',
+                    }}
+                >
                 <Card
                 hoverable='true'
-                
+                className="antCard"
                 cover={
                     <img
                       alt="example"
-                    //   src={} 이미지 
-                    width="auto"
-                      height="300"
+                      src={data[i].freePostImageDTO.url} 
+                    
+                      height="600"
                     />
                   }
+                width='auto'
+                height='auto'
                 actions={[
+                    
                     commentFormOpened? <MessageTwoTone twoToneColor="#00BFFF" key="comment" onClick={onToggleComment}/>  
                     :<MessageOutlined key="comment" onClick={onToggleComment} />,
 
@@ -134,37 +144,41 @@ const PostCard = ()=>
                 ]}
                 >
                 
-                    <Card.Meta style={{}}
+                    <Card.Meta 
                         avatar = {<Avatar>{data[i].author[0]}</Avatar>}
                         title = {data[i].author}
                         description = {data[i].content}     
+                        
                     />
                 </Card>
-                {commentFormOpened && 
-                    (<div>
-                    <CommentForm/>
-                    <List
-                        header={`개의 댓글`}
-                        itemLayout="horizontal"
-                        dataSource=''
-                        renderItem= {(item)=>(
-                            <li>
-                                <Comment
-                                    author='ㅎㅇ'
-                                    avatar={<Avatar>댓글</Avatar>}
-                                    content='ㅎㅇ'
+                </Space>
+                {
+                            commentFormOpened && 
+                                (<div>
+                                <CommentForm/>
+                                <List
+                                    header={data[i].freePostCommentDTOList.length+'개의 댓글'}
+                                    itemLayout="horizontal"
+                                    dataSource={data[i].freePostCommentDTOList}
+                                    renderItem= {(item)=>(
+                                        <li>
+                                            <Comment
+                                                author={data[i].freePostCommentDTOList.author}
+                                                avatar={<Avatar>{data[i].freePostCommentDTOList.author[0]}</Avatar>}
+                                                content={data[i].freePostCommentDTOList.content}
+                                            />
+                                        </li>
+                                )}
                                 />
-                            </li>
-                    )}
-                     />
-                
-                    </div>)
+                            
+                                </div>)
                 
                 }
+
                 </>
              )
          })
-         } */}
+         }
           
             
         </div>

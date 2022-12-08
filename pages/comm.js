@@ -58,21 +58,21 @@ export default function Comm() {
        
                <Row gutter={8} >
             
-            <Col xs={24} md={2}>
+            <Col xs={24} md={5}>
             
             </Col>
-            <Col xs={24} md={20}>
+            <Col xs={24} md={14}>
             
              <h4 className={styles.title2} >
                             크루
                             <a style={{textDecoration:'none'}}>홍보글</a>
                 </h4> 
                 <CrewPost/>
-                <PostCard/>
+                <PostCard />
                 
             </Col>  
             
-            <Col xs={24} md={2}>
+            <Col xs={24} md={5}>
 
             </Col>
 
