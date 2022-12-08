@@ -17,7 +17,7 @@ import FormData  from 'form-data';
 const NutriPost = () =>
 {   
      
-    const nuriText = ({"name":"고기만두","weight_g":"250.0","calorie_kcal":"454.39","Carbohydrate_g":"55.33","sugars_g":"0.0","fat_g":"18.25","protein_g":"18.66","calcium_mg":"121.64","phosphorus_mg":"234.64","sodium_mg":"888.8","potassium_mg":"767.34","magnesium_mg":"0.0","iron_mg":"4.19","zinc_mg":"3.09","cholesterol_mg":"21.0","transFat_g":"0.0"})
+    
     const formData = new FormData();
     const [imageToggle,setImageToggle] = useState(false);
     const onToggleImage = useCallback((e)=>
@@ -110,10 +110,22 @@ const NutriPost = () =>
                   (  <Card
                     hoverable='true'
                     style={{'whiteSpace': 'pre-line'}}
+                    me
                     
                        >  
-    {/*                 
-                        <Card.Meta style={{}}
+
+                       <p>이름 : 고기만두</p> 
+                       <p>총량 : 250g</p>
+                       <p>칼로리 : 454.39Kcal</p> 
+                       <p>이름 : 고기만두</p> 
+                       <p>지방 : 18.25g</p> 
+                       <p>단백질 : 18.66g</p> 
+                       <p>콜레스테롤 : 21.0g</p>
+                        
+                       
+                       
+                       
+                        {/* <Card.Meta style={{}}
                             description = ''     
                         /> */}
                     </Card>
