@@ -8,37 +8,43 @@ import axios from 'axios';
 import styles from '../styles/Home.module.css'
 import {UploadOutlined} from '@ant-design/icons'
 import { json } from 'react-router-dom';
+import FormData  from 'form-data';
 
 
 const CrewPost = () =>
 {   
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const formData = new FormData();
   const handleUpload = useCallback(() => {
     
     console.log(fileList)
-    const formData = new FormData();
-    formData.append('image', fileList);
-
-    const json = JSON.stringify({content:text, title: ' '});
-    console.log('json 내용',json)
-    const blob = new Blob ([json], { type : "application/json" });
-    console.log('blob',blob) 
-    formData.append('postingDTO',json);
+    fileList.forEach((file) => {
+      formData.append('files[]', file);
+    });
+    // const json = JSON.stringify({content:text, title: ' '});
+    // console.log('json 내용',json)
+    // const blob = new Blob ([json], { type : "application/json" });
+    // console.log('blob',blob) 
+    // formData.append('postingDTO',json);
     for (let key of formData.keys()) {
-      console.log(key, ":", formData.get(key));
+      console.log('key:', key, formData.get(key));
+    }
+    for (let val of formData.values()) {
+      console.log('value:', val, formData.get(val))
     }
     
     setUploading(true);
+    
 
     // You can use any AJAX library you like
     axios.post('https://api.withrun.click/freepost/post',
-             formData ,
+             formData,
           {
           headers:
           {
             "Authorization" : "Bearer "+localStorage.getItem('Authorization'),
-            'Content-Type': 'multipart/form-data'
+            // 'Content-Type': 'multipart/form-data'
           }
         }
 
@@ -99,6 +105,7 @@ const CrewPost = () =>
       setFileList([...fileList, file]);
       return false;
     },
+    
     fileList,
   };
     const[text,setText] = useState('');
