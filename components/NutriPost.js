@@ -107,7 +107,10 @@ const NutriPost = () =>
         
         
         
-        
+         <h4 className={styles.title2} >
+                            분석
+                            <a style={{textDecoration:'none'}}>결과</a>
+            </h4>
         {imageToggle === true &&
                   
                   (  <Card
