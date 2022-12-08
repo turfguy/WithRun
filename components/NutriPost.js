@@ -8,6 +8,7 @@ import axios from 'axios';
 import styles from '../styles/Home.module.css'
 import {UploadOutlined, InboxOutlined} from '@ant-design/icons'
 import FormData  from 'form-data';
+import { json } from 'react-router-dom';
 
 // 2. POST - http://118.67.135.208:3000/upload
 // 위 사진과 같이 form-data로 이미지를 "file" 형식으로 요청 보내시면 됩니다. 
@@ -63,6 +64,7 @@ const NutriPost = () =>
             setImageToggle(true);
             message.success(`열심히 분석하고 있으니, 잠시만 기다려주세요!`);
             axios.post('http://118.67.135.208:3000/upload',
+           
             formData,
             {
                 headers:

@@ -16,32 +16,38 @@ const CrewPost = () =>
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
   const formData = new FormData();
+  const [toggleUpload, setToggleUpload ] = useState(false);
+  const onChangeToggleUpload = useCallback((e)=>{
+     toggleUpload !== true ? setToggleUpload(true) : setToggleUpload(false);
+     console.log(toggleUpload);
+
+  }) 
+  const [imageId, setImageId] = useState('');
+  const [imageName, setImageName] = useState('');
+  const onChangeImageId = useCallback((e)=>{
+    setImageId(e.taget.value);
+  })
+  const onChangeImageName = useCallback((e)=>{
+    setImageName(e.taget.value);
+    console.log(imageName)
+  })
   const handleUpload = useCallback(() => {
     
-    console.log(fileList)
-    fileList.forEach((file) => {
-      formData.append('image', file);
-    });
-    // const json = JSON.stringify({content:text, title: ' '});
-    // console.log('json 내용',json)
-    // const blob = new Blob ([json], { type : "application/json" });
-    // console.log('blob',blob) 
-    // formData.append('postingDTO',json);
-    for (let key of formData.keys()) {
-      console.log('key:', key, formData.get(key));
-    }
-    for (let val of formData.values()) {
-      console.log('value:', val, formData.get(val))
-    }
-    console.log('39번째줄 찍겠습니다 행님',formData)
-    setUploading(true);
     
-    // You can use any AJAX library you like
-    axios.post('https://api.withrun.click/freepost/post',
+    fileList.forEach((file) => {
+      console.log(file)
+      formData.append('image', file);
+      setImageName(file.name)
+      console.log(imageName)
+    });
+   
+    setUploading(true);
 
-              formData            
-            ,
-             
+    
+
+    // You can use any AJAX library you like
+    axios.post('https://api.withrun.click/freepost/post/image',
+              formData , 
           {
           headers:
           {
@@ -52,49 +58,55 @@ const CrewPost = () =>
 
         ).then((res)=>{
          
-          console.log(res)
+          console.log('1번 API Response',res)
           setFileList([]);
-          message.success('upload successfully.');
+
+
+          console.log('1번 RES.free.id',res.data.freePostImageDTO.id);
+          // onChangeImageId(res.data.freePostImageDTO.id);
+          // setImageId(res.data.freePostImageDTO.id)
+          // console.log('이미지 ID', imageId)
+
+          // console.log('text:', text, 'imageId :', imageId)
+    
         }).catch(function(error) {
-          message.error('upload failed.');
+          message.error('글과 이미지를 모두 작성했는지 확인해주세요.');
           console.log(error);
-          }) .finally(() => {
+          }) 
+          .finally(() => {
           setUploading(false);
             });
+   
+     axios.post('https://api.withrun.click/freepost/post/text',
+            {
+              'content': text, 
+              'imageUrl': ('https://withrun.s3.ap-northeast-2.amazonaws.com/Server/'+localStorage.getItem('id')+'/'+imageName)
+              // https://withrun.s3.ap-northeast-2.amazonaws.com/Server/1/foodimg1.jpg
+            },
+              {
+              headers:
+              {
+                "Authorization" : "Bearer "+localStorage.getItem('Authorization'),
+                
+              }
+            }
+    
+            )
+            .then((res)=>{
+            
+              console.log('2번 API Response',res)
+              message.success('글이 작성되었어요!');
+              setImageId('');
+            })
+            .catch((error)=>{
+              
+              console.log('2번 API Error',error)
+
+})
+      
 
 });
 
-  //   fetch('https://api.withrun.click/freepost/post', {
-      
-  //     method: 'POST',
-  //     headers:
-  //     {
-  //       "Authorization" : "Bearer "+localStorage.getItem('Authorization'),
-  //       // "Content-Type" : 'multipart/form-data'
-  //     },
-  //     body:{
-      
-
-  //     }
-      
-      
-  //   })
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       console.log(res)
-  //       setFileList([]);
-  //       message.success('upload successfully.');
-  //     })
-  //     .catch((error) => {
-  //       message.error('upload failed.');
-  //       console.log(error);
-  //     })
-  //     .finally(() => {
-  //       setUploading(false);
-  //     });
-
-  // })
-    
   
   const props = {
     onRemove: (file) => {
@@ -105,6 +117,7 @@ const CrewPost = () =>
     },
     beforeUpload: (file) => {
       setFileList([...fileList, file]);
+      setImageName(file.name);
       return false;
     },
     
