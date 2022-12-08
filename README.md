@@ -49,7 +49,7 @@
   ![adv](./public/%ED%99%8D%EB%B3%B4%EA%B2%8C%EC%8B%9C%ED%8C%90.png)  
 
 * 영양소 분석  
-  ![nutri](./public/%EC%98%81%EC%96%91%EC%86%8C%EB%B6%84%EC%84%9D.png)
+  ![nutri](./public/Nutri2.png)
 
 
 
