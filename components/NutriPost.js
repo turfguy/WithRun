@@ -62,22 +62,22 @@ const NutriPost = () =>
             
             setImageToggle(true);
             message.success(`열심히 분석하고 있으니, 잠시만 기다려주세요!`);
-            // axios.post('http://118.67.135.208:3000/upload',
-            // formData,
-            // {
-            //     headers:
-            //     {
-            //         "Content-Type" : 'multipart/form-data'
-            //     }
-            // }    
-            // ).then((res)=>{
-            //    console.log(res)
-            //    console.log('hi')
+            axios.post('http://118.67.135.208:3000/upload',
+            formData,
+            {
+                headers:
+                {
+                    "Content-Type" : 'multipart/form-data'
+                }
+            }    
+            ).then((res)=>{
+               console.log(res)
+               console.log('hi')
         
-            //   }).catch(function(error) {
-            //     console.log(error)
-            //     console.log('에러뜸')
-            //   });
+              }).catch(function(error) {
+                console.log(error)
+                console.log('에러뜸')
+              });
         
             });
     return(

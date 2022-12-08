@@ -20,7 +20,7 @@ const CrewPost = () =>
     
     console.log(fileList)
     fileList.forEach((file) => {
-      formData.append('files[]', file);
+      formData.append('image', file);
     });
     // const json = JSON.stringify({content:text, title: ' '});
     // console.log('json 내용',json)
@@ -33,18 +33,20 @@ const CrewPost = () =>
     for (let val of formData.values()) {
       console.log('value:', val, formData.get(val))
     }
-    
+    console.log('39번째줄 찍겠습니다 행님',formData)
     setUploading(true);
     
-
     // You can use any AJAX library you like
     axios.post('https://api.withrun.click/freepost/post',
-             formData,
+
+              formData            
+            ,
+             
           {
           headers:
           {
             "Authorization" : "Bearer "+localStorage.getItem('Authorization'),
-            // 'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data'
           }
         }
 
