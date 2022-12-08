@@ -64,22 +64,7 @@ const CrewPost = () =>
 
 
           console.log('1번 RES.free.id',res.data.freePostImageDTO.id);
-          // onChangeImageId(res.data.freePostImageDTO.id);
-          // setImageId(res.data.freePostImageDTO.id)
-          // console.log('이미지 ID', imageId)
-
-          // console.log('text:', text, 'imageId :', imageId)
-    
-        }).catch(function(error) {
-          message.error('글과 이미지를 모두 작성했는지 확인해주세요.');
-          console.log(error);
-          }) 
-          .finally(() => {
-          setUploading(false);
-          setText('');
-            });
-   
-     axios.post('https://api.withrun.click/freepost/post/text',
+          axios.post('https://api.withrun.click/freepost/post/text',
             {
               'content': text, 
               'imageUrl': ('https://withrun.s3.ap-northeast-2.amazonaws.com/Server/'+localStorage.getItem('id')+'/'+imageName)
@@ -106,6 +91,22 @@ const CrewPost = () =>
               console.log('2번 API Error',error)
 
 })
+          // onChangeImageId(res.data.freePostImageDTO.id);
+          // setImageId(res.data.freePostImageDTO.id)
+          // console.log('이미지 ID', imageId)
+
+          // console.log('text:', text, 'imageId :', imageId)
+    
+        }).catch(function(error) {
+          message.error('글과 이미지를 모두 작성했는지 확인해주세요.');
+          console.log(error);
+          }) 
+          .finally(() => {
+          setUploading(false);
+          setText('');
+            });
+   
+     
       
 
 });

@@ -27,7 +27,8 @@ const PostCard = ()=>
             // console.log(res)
         // })
          .then((res) => {
-           setData([...data, ...res]);
+           console.log(res)
+           setData(...res);
            console.log('data :',data)
            
          })
@@ -110,7 +111,7 @@ const PostCard = ()=>
                 
                 }
        
-         { data && data.map((a,i)=>{
+         {/* { data && data.map((a,i)=>{
              return(
                  <>
                 <Card
@@ -163,7 +164,7 @@ const PostCard = ()=>
                 </>
              )
          })
-         }
+         } */}
           
             
         </div>
