@@ -27,15 +27,13 @@ const PostCard = ()=>
             // console.log(res)
         // })
          .then((res) => {
-           console.log(res)
-           setData(res.data);
-           console.log('data :',data)
+           setData(res.data.reverse());
            
          })
          .catch((error) => {
              console.log(error)
               });
-      }, [])
+      })
 
     const [liked,setLiked] = useState(false);
     const [commentFormOpened, setCommmentFormOpened] =  useState(false);
@@ -50,77 +48,22 @@ const PostCard = ()=>
         // Get 받아서 Map으로 그려주도록하자
         <> 
         <div style={{marginBottom : 20, marginTop: 50 }}>
-        
-        {/* <Card
-                hoverable='true'
-                cover={
-                    <img
-                      alt="example"
-                    src='https://cdn.san.chosun.com/news/photo/202107/14996_62759_3629.jpg' 
-                    width="auto"
-                      height="300"
-                    />
-                  }
-                actions={[
-                    commentFormOpened? <MessageTwoTone twoToneColor="#00BFFF" key="comment" onClick={onToggleComment}>'댓글'</MessageTwoTone>
-                    :<MessageOutlined key="comment" onClick={onToggleComment} description='댓글'/>,
+        <Space
+                    direction="vertical"
+                    size="large"
 
-               
-                     
-                ]}
                 >
-                
-                    <Card.Meta style={{}}
-                        avatar = {<Avatar>한</Avatar>}
-                        title = '한사랑달리기회'
-                        description = '열정!열정!열정!! 남녀노소 누구나 오세요~ 즐겁게 달리고 건강챙겨요^^ 여러분 사랑합니다 ❤🧡💛💚💙💜🤎🖤🤍'  
-                    />
-                </Card>
-                {commentFormOpened && 
-                    (<div>
-                    <CommentForm/>
-                    <Comment
-                        actions={[<span key="comment-nested-reply-to">Reply to</span>]}
-                        author={<a>김기윤</a>}
-                        avatar={
-                        <Avatar
-                            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                            alt="Han Solo"
-                        />
-                        }
-                        content={
-                        <p>
-                            가입하고싶어요!!
-                        </p>
-                        }
-                    />
-                     <Comment
-                        actions={[<span key="comment-nested-reply-to">Reply to</span>]}
-                        author={<a>류지호</a>}
-                        avatar={
-                        <Avatar>류</Avatar>
-                        }
-                        content={
-                        <p>
-                            완전 취향저격!!
-                        </p>
-                        }
-                    />
-                    
-                    </div>)
-                
-                }
-        */}
-         { data && data.map((a,i)=>{
-             return(
-                 <>
-                 <Space
+        <Space
                     direction="vertical"
                     size="large"
                     style={{
                     display: 'flex',
                     }}
                 >
+         { data && data.map((a,i)=>{
+             return(
+                 <>
+           
                 <Card
                 hoverable='true'
                 className="antCard"
@@ -151,7 +94,7 @@ const PostCard = ()=>
                         
                     />
                 </Card>
-                </Space>
+               
                 {
                             commentFormOpened && 
                                 (<div>
@@ -163,9 +106,9 @@ const PostCard = ()=>
                                     renderItem= {(item)=>(
                                         <li>
                                             <Comment
-                                                author={data[i].freePostCommentDTOList.author}
-                                                avatar={<Avatar>{data[i].freePostCommentDTOList.author[0]}</Avatar>}
-                                                content={data[i].freePostCommentDTOList.content}
+                                                author={item.author}
+                                                avatar={<Avatar>{item.author[0]}</Avatar>}
+                                                content={item.content}
                                             />
                                         </li>
                                 )}
@@ -174,13 +117,13 @@ const PostCard = ()=>
                                 </div>)
                 
                 }
-
+                    
                 </>
              )
          })
          }
-          
-            
+          </Space>
+            </Space>
         </div>
         </>
     );

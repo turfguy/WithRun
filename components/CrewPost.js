@@ -63,7 +63,6 @@ const CrewPost = () =>
           setFileList([]);
 
 
-          console.log('1번 RES.free.id',res.data.freePostImageDTO.id);
           axios.post('https://api.withrun.click/freepost/post/text',
             {
               'content': text, 
