@@ -60,7 +60,7 @@ const CrewPost = () =>
         ).then((res)=>{
          
           console.log('1번 API Response',res)
-          setFileList([]);
+          setFileList([]);  
 
 
           axios.post('https://api.withrun.click/freepost/post/text',
