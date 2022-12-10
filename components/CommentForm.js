@@ -2,7 +2,6 @@ import {Form,Button,Input} from 'antd';
 import React, { useCallback, useState } from 'react';
 import useInput from '../hooks/useInput';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 
 const CommentForm = ()=>
 {

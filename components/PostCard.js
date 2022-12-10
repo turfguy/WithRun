@@ -1,8 +1,6 @@
 import { EllipsisOutlined,HeartTwoTone, HeartOutlined, MessageOutlined, RetweetOutlined, MessageTwoTone } from "@ant-design/icons";
 import { Avatar, Button, Card, List, Popover,Comment,Skeleton,Divider,Space } from "antd";
 import {ButtonGroup,  } from "antd/lib/button/button-group";
-import { useSelector } from "react-redux";
-import propTypes from 'prop-types';
 import { useCallback, useEffect, useState } from "react";
 import React from "react";
 import Head from "next/head";
