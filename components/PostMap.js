@@ -76,7 +76,7 @@ const PostMap = () =>
         <Head>
             <script
                 type="text/javascript"
-                src={KAKAOMAP_API_KEY}        
+                src={KAKAOMAP_API_KEY} // API -key 유출 방지        
                 
                 />   
         </Head>

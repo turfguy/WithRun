@@ -25,7 +25,11 @@
 ## ❄️ Technology used  
 
   *  Next.js  
-        - 리액트 기반의 프레임워크로, 리액트의 단점을 보완해주는 부분이 많아서 선택하였습니다.  
+        - 리액트 기반의 프레임워크로, 리액트의 단점을 보완해주는 부분이 많아서 선택하였습니다. 
+        - Next.js의 SSR(Server Side Rendering)을 이용하면 CSR(Client Side Rendering) 환경에서는 힘든 SEO 처리를 쉽게 할 수 있습니다.
+        - CSR은 브라우저에서 html, javascript 파일을 받아 렌더링한다면 SSR은 브라우저에서 해야할 렌더링을 서버에서 렌더링하여 html 파일을 브라우저에 보내줍니다. 
+        - API 요청을 서버에서 진행하고 브라우저가 받은 html 문서에는 SEO 처리에 필요한 정보가 들어있습니다.
+        - Pre-rendering 을 통한 높은 퍼포먼스
         - 특히나, SSR과 SEO 때문에 선택하게 되었습니다.  
             ✔️page-based routing system  
             ✔️SSG / SSR  
