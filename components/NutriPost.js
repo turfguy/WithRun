@@ -115,17 +115,18 @@ const NutriPost = () =>
                   
                   (  <Card
                     hoverable='true'
-                    style={{'whiteSpace': 'pre-line' , 'alignItems': 'center'}}
-                    height='150'
+                    style={{'whiteSpace': 'pre-line' , 'alignItems': 'center', 'objectFit': 'cover'}}
                     cover={
                     <img
                       alt="example"
                     src='https://i.ytimg.com/vi/O9blLYzVWEM/maxresdefault.jpg'
+                    
+                    style={{'objectFit': 'cover', 'height': '300'}}
                     width="auto"
-                      height="300"
+                    height="500"
+                    objectFit="cover"
                     />
-                  }
-                    me
+                  }                    
                     
                        >  
 
@@ -160,10 +161,10 @@ const NutriPost = () =>
                       alt="example"
                     src='https://desion.kr/web/product/tiny/202101/7b8394ed298eafcde0ad47a0bc64de83.jpg'
                     width="auto"
-                      height="300"
+                    height="500"
+                    objectFit="cover"
                     />
                   }
-                    me
                     
                        >  
 
@@ -190,10 +191,11 @@ const NutriPost = () =>
                       alt="example"
                     src='http://gdimg.gmarket.co.kr/2262322531/still/600?ver=1638510565'
                     width="auto"
-                      height="300"
+                    height="500"
+                    objectFit="cover"
+                   
                     />
                   }
-                    me
                     
                        >  
 

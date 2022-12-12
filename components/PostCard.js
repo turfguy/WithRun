@@ -70,7 +70,9 @@ const PostCard = ()=>
                       alt="example"
                       src={data[i].freePostImageDTO.url} 
                     
-                      height="600"
+                    //   height="600"
+                      style={{'objectFit': 'cover'}}
+                        
                     />
                   }
                 width='auto'
