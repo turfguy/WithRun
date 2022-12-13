@@ -1,4 +1,4 @@
-import {Button, Form, Input,Container,Card ,Upload , message,Spin} from 'antd'
+import {Button, Form, Input,Container,Card ,Upload , message,Spin,Space} from 'antd'
 import { useCallback, useRef, useState, useEffect} from 'react';
 import Script from 'next/script';
 import { Map, MapMarker } from "react-kakao-maps-sdk";
@@ -113,9 +113,13 @@ const NutriPost = () =>
             </h4>
         {imageToggle === true &&
                   
-                  (  <Card
+                  ( 
+                      
+                      
+                    <Card
                     hoverable='true'
-                    style={{'whiteSpace': 'pre-line' , 'alignItems': 'center', 'objectFit': 'cover'}}
+                    style={{'whiteSpace': 'pre-line' , 'alignItems': 'center' ,'marginTop': 30}}
+                    height='150'
                     cover={
                     <img
                       alt="example"
@@ -148,13 +152,14 @@ const NutriPost = () =>
                             description = ''     
                         /> */}
                     </Card>
-
                   )     
                 }
-        
+                <div>
+                  
+                  
                  <Card
                     hoverable='true'
-                    style={{'whiteSpace': 'pre-line' , 'alignItems': 'center' ,'marginTop': '20'}}
+                    style={{'whiteSpace': 'pre-line' , 'alignItems': 'center' ,'marginTop': 30}}
                     height='150'
                     cover={
                     <img
@@ -180,7 +185,11 @@ const NutriPost = () =>
                                         <p>   트랜스지방 : 0.0g </p>
                         
                     </Card>
-
+                    </div>
+                    
+                    <div style={{'marginTop': 30}}>
+                          
+                          
                     <Card
                     hoverable='true'
                     style={{'whiteSpace': 'pre-line' , 'alignItems': 'center' ,'marginTop': '20'}}
@@ -211,15 +220,13 @@ const NutriPost = () =>
                                 <p> 트랜스지방 : 0.0g </p>
                         
                     </Card>
-                
-       
+                   
          
-         
-          
+                    </div>
             
         </div>
-       
         </>
+       
     
     )
 }
