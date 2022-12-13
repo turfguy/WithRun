@@ -60,7 +60,7 @@ export default function Nutri() {
                 오늘 먹은 음식의 영양성분을 분석해드려요.
             </h6>
             <NutriPost/> 
-                
+            
             </Col>  
             
             <Col xs={24} md={6}>
