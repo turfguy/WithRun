@@ -28,9 +28,12 @@ export default function Comm() {
          wirteOpen !=='true' ? setWriteOpen('true'): setWriteOpen('false')
          console.log(wirteOpen)
     })
+    const [item,setItem] = useState('')
+    useEffect(()=>{
 
-    const item = (typeof window !== 'undefined') ? localStorage.getItem('username'): ('')
+    (typeof window !== 'undefined') ?  setItem(localStorage.getItem('username')) : ' '
     
+   })
 
     return (
         <div>

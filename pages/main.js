@@ -13,10 +13,12 @@ import PostMap from '../components/PostMap';
 import axios from 'axios';
 
 export default function Main() {
-   
-    
+    const [item,setItem] = useState('')
+    useEffect(()=>{
 
-    const item = (typeof window !== 'undefined') ? localStorage.getItem('username'): ('')
+    (typeof window !== 'undefined') ?  setItem(localStorage.getItem('username')) : ' '
+    
+   })
     
 
     return (

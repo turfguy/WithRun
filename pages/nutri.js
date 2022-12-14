@@ -18,8 +18,12 @@ export default function Nutri() {
    
  
 
-    const item = (typeof window !== 'undefined') ? localStorage.getItem('username'): ('')
+    const [item,setItem] = useState('')
+    useEffect(()=>{
+
+    (typeof window !== 'undefined') ?  setItem(localStorage.getItem('username')) : ' '
     
+   }) 
 
     return (
         <div>
