@@ -29,17 +29,25 @@ export default function Comm() {
          console.log(wirteOpen)
     })
 
+    const item = (typeof window !== 'undefined') ? localStorage.getItem('username'): ('')
+    
+
     return (
         <div>
           
                 <h1 className={styles.title} style={{fontWeight: 'bold', marginTop: '30px', marginBottom: '50px'}} >
                             With <a style={{textDecoration:'none'}}>Run</a>
                 </h1>
-                <div>
-                <h4 style={{'marginLeft': '20'}} >
-                    반갑습니다, <a style={{textDecoration:'none'}}>{localStorage.getItem('username')}</a> 님!
+
+                <h4 style={{'marginLeft': '20' , fontWeight: 'inherit'}} >
+                    반갑습니다, 
+                    <a style={{textDecoration:'none' , fontWeight: 'bolder'}}>
+                        {item}
+                        </a> 
+                    
+                    님!
                 </h4>
-                </div>
+                
                 
                 <Menu style={{  marginBottom: 30}}theme='dark' mode='horizontal'>
           
