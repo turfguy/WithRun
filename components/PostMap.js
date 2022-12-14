@@ -84,7 +84,6 @@ const PostMap = () =>
                             주변
                             <a style={{textDecoration:'none'}}>모집글</a>
           </h4> 
-      
           <Card  bordered={false} >
           
         <Form style={{margin: '0px 0 0px'}} bordered={false} encType="multipart/form-data" >

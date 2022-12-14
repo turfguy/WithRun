@@ -35,6 +35,12 @@ export default function Comm() {
                 <h1 className={styles.title} style={{fontWeight: 'bold', marginTop: '30px', marginBottom: '50px'}} >
                             With <a style={{textDecoration:'none'}}>Run</a>
                 </h1>
+                <div>
+                <h4 style={{'marginLeft': '20'}} >
+                    반갑습니다, <a style={{textDecoration:'none'}}>{localStorage.getItem('username')}</a> 님!
+                </h4>
+                </div>
+                
                 <Menu style={{  marginBottom: 30}}theme='dark' mode='horizontal'>
           
           <Menu.Item  icon={<ThunderboltOutlined />}>
@@ -52,8 +58,6 @@ export default function Comm() {
                      <Link  href='/nutri' > 영양소분석 </Link>
      
           </Menu.Item>
-          
-
           </Menu>
        
                <Row gutter={8} >

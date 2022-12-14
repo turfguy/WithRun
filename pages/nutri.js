@@ -24,6 +24,9 @@ export default function Nutri() {
                 <h1 className={styles.title} style={{fontWeight: 'bold', marginTop: '30px', marginBottom: '50px'}} >
                             With <a style={{textDecoration:'none'}}>Run</a>
                 </h1>
+                <h4 style={{'marginLeft': '20'}} >
+                    반갑습니다, <a style={{textDecoration:'none'}}>{localStorage.getItem('username')}</a> 님!
+                </h4>
                 <Menu style={{  marginBottom: 30}}theme='dark' mode='horizontal'>
           
           <Menu.Item  icon={<ThunderboltOutlined />}>
