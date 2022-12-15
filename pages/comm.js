@@ -42,7 +42,7 @@ export default function Comm() {
                             With <a style={{textDecoration:'none'}}>Run</a>
                 </h1>
 
-                <h4 style={{'marginLeft': '20' , fontWeight: 'inherit'}} >
+                <h4 style={{marginLeft: '20' , paddingLeft: '50', fontWeight: 'inherit'}} >
                     반갑습니다, 
                     <a style={{textDecoration:'none' , fontWeight: 'bolder'}}>
                         {item}
