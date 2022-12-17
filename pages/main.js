@@ -28,14 +28,7 @@ export default function Main() {
                             With <a style={{textDecoration:'none'}}>Run</a>
                 </h1>
 
-                <h4 style={{marginLeft: '20' , paddingLeft: '50', fontWeight: 'inherit'}} >
-                    반갑습니다, 
-                    <a style={{textDecoration:'none' , fontWeight: 'bolder'}}>
-                        {item}
-                        </a> 
-                    
-                    님!
-                </h4>
+                
                 <Menu style={{  marginBottom: 30}}theme='dark' mode='horizontal'>
           
                 <Menu.Item  icon={<ThunderboltOutlined />}>
@@ -60,8 +53,15 @@ export default function Main() {
        
                <Row gutter={8} >
             
-            <Col xs={24} md={2}>
-            
+            <Col xs={24} md={3}>
+            <h4 style={{marginLeft: '20' , paddingLeft: '50', fontWeight: 'inherit'}} >
+                    반갑습니다, 
+                    <a style={{textDecoration:'none' , fontWeight: 'bolder'}}>
+                        {item}
+                        </a> 
+                    
+                    님!
+                </h4>
             </Col>
             <Col xs={24} md={15}>
                 <PostMap/>
